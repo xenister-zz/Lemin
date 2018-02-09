@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/09 07:33:27 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/09 08:55:49 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int		create_matrix(t_base *info)
 
 int		get_tube(t_base *info, char	*line)
 {
-	if ((!IMX))
-		create_matrix(info);
 	if (!ITB)
 		ITB = ft_strdup(line, 0);
 	else
@@ -99,6 +97,8 @@ int		main(void)
 		ft_printf("ERROR");
 		return (0);
 	}
+	if ((!IMX))
+	create_matrix(info);
 	ft_printf("--- Base Entry ---\n");
 	ft_printf(IBE);
 	ft_printf("===== ROOM =====\n");
