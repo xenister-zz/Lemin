@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/02/09 03:40:33 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/09 06:48:57 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define IRM info->room
 # define ITB info->tube
 # define IMX info->matrix
+# define IMSZ info->mxsize
 
 typedef struct	s_base
 {
@@ -27,6 +28,7 @@ typedef struct	s_base
 	char	*room;
 	char	*tube;
 	int		**matrix;
+	int		mxsize;
 	int		fourmi;
 }				t_base;
 

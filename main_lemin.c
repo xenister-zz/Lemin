@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/09 03:51:36 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/09 07:33:27 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,34 @@
 
 int		the_matrix(t_base *info)
 {
-	
+	return (0);
+}
+
+int		create_matrix(t_base *info)
+{
+	int		size;
+
+	if ((!IMX) && (IMSZ = ft_count_char(IRM, '\n')))
+		IMX = ft_inttable(IMX, IMSZ, IMSZ);
+	return (1);
 }
 
 int		get_tube(t_base *info, char	*line)
 {
-	
+	if ((!IMX))
+		create_matrix(info);
+	if (!ITB)
+		ITB = ft_strdup(line, 0);
+	else
+		ITB = ft_append(ITB, line, 0);
+	ITB = ft_append(ITB, "\n", 0);
+	return (1);
 }
 
 int		get_room(t_base *info, char *line)
-{
+{ 
 	if (ft_strchr(line, '-'))
-		return(get_tube(info, line));
+		return (get_tube(info, line));
 	if (ft_strchr(line, '#'))
 		return (1);
 	if (ft_count_char(line, ' ') != 2)
@@ -61,7 +77,6 @@ int		get_base_entry(t_base *info)
 			IBE = ft_append(IBE, line, 2);
 		}
 		IBE = ft_append(IBE, "\n", 0);
-
 	}
 	return (1);
 }
@@ -71,20 +86,35 @@ int		get_base_entry(t_base *info)
 int		main(void)
 {
 	t_base	*info;
+	int		i, j;
 
 	info = ft_memalloc(sizeof(t_base), 0);
+	i = 0;
 	IANT = -1; 
 	IRM = NULL;
 	ITB = NULL;
-
+	IMX = NULL;
 	if (!(get_base_entry(info)))
 	{
 		ft_printf("ERROR");
 		return (0);
 	}
-	ft_printf("--- Base Entry ---\n")
+	ft_printf("--- Base Entry ---\n");
 	ft_printf(IBE);
-	ft_printf("***** Tube *****\n")
+	ft_printf("===== ROOM =====\n");
 	ft_printf(IRM);
+	ft_printf("***** Tube *****\n");
+	ft_printf(ITB);
+	ft_printf("+++++ Matrix +++++\n");
+	while (i < IMSZ)
+	{
+		j = 0;
+		while (j < IMSZ)
+		{
+			ft_printf("|%d", IMX[i][j++]);
+		}
+		ft_printf("\n");
+		i++;
+	}
 	return(0);
 }

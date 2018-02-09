@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 14:16:30 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/01 09:44:25 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/09 06:39:46 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <fcntl.h>
 # include "libft.h"
 # include <stdio.h>
+# include "ft_printf.h"
 
 typedef struct	s_gnl
 {
@@ -140,7 +141,7 @@ int				ft_count_char(char *src, char c);
 int				ft_no_encounter_index(char *str, char *caras);
 int				get_next_line(const int fd, char **line);
 char			**ft_addchartable(char **table, char *toadd, int size);
-int				**ft_addinttable(int **table, int *toadd, int size, int size2);
+int				**ft_inttable(int **table, int sizex, int sizey);
 int				ft_print_table(char **table, int newline);
 
 #endif
