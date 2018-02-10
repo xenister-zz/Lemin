@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 14:16:30 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/09 06:39:46 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/10 16:58:05 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int				ft_ifmanyinchain(char const *s);
 int				ft_atoi_base(char *str, char *base);
 char			*ft_itoa_base(uintmax_t nbr, char *base);
 int				ft_base_check(char *str);
-char			*ft_append(char *s1, char *s2, int b);
+char			*ft_append(char *source, char *toadd, int b);
 int				ft_no_encounter(char *str, char *caras);
 char			ft_encounter(char *str, char *caras);
 int				ft_no_encounter_until(char *str, char *caras, char c);

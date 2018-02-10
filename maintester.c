@@ -1,14 +1,12 @@
 #include "./LibftXen/libft.h"
 
-int     main()
+int		main()
 {
-    int     *pouet;
-    int     i;
+    char	*pouet, *pouet2;
+    //int	i;
 
-    i = 0;
-    pouet = NULL;
-    pouet = ft_memalloc((sizeof(int) * 8), 0);
-    while (i < 8)
-        ft_printf("|%d", pouet[i++]);
-    return (0);
+	//i = 0;
+	pouet2 = "   -214748364";
+	ft_printf("|%d|\n", ft_atoi(pouet2));
+	return (0);
 }

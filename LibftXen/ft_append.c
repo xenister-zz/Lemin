@@ -6,35 +6,37 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 16:23:56 by susivagn          #+#    #+#             */
-/*   Updated: 2017/08/10 15:49:01 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/10 16:57:30 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_append(char *s1, char *s2, int b)
+char	*ft_append(char *source, char *toadd, int b)
 {
 	int		c;
 	char	*str;
 
 	str = NULL;
-	if (!s1 && !s2)
+	if (!source && !toadd)
 		return (str);
-	c = (ft_strlen(s1) + ft_strlen(s2));
+	if (!source && toadd)
+		return(ft_strdup(toadd, 0));
+	c = (ft_strlen(source) + ft_strlen(toadd));
 	str = ft_strnew(c, '\0');
 	if (!str)
 		return (NULL);
 	c = 0;
-	str = ft_strcpy(str, s1);
-	str = ft_strncat(str, s2, ft_strlen(s2));
+	str = ft_strcpy(str, source);
+	str = ft_strncat(str, toadd, ft_strlen(toadd));
 	if (b == 1)
-		free(s1);
+		free(source);
 	if (b == 2)
-		free(s2);
+		free(toadd);
 	if (b == 3)
 	{
-		free(s1);
-		free(s2);
+		free(source);
+		free(toadd);
 	}
 	return (str);
 }

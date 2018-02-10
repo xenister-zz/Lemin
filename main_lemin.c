@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/09 08:55:49 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/10 18:41:53 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		create_matrix(t_base *info)
 
 int		get_tube(t_base *info, char	*line)
 {
+	ft_printf("--- IN TUBE ---\n");
 	if (!ITB)
 		ITB = ft_strdup(line, 0);
 	else
@@ -38,10 +39,9 @@ int		get_tube(t_base *info, char	*line)
 
 int		get_room(t_base *info, char *line)
 { 
+	ft_printf("--- IN ROOM ---\n");
 	if (ft_strchr(line, '-'))
 		return (get_tube(info, line));
-	if (ft_strchr(line, '#'))
-		return (1);
 	if (ft_count_char(line, ' ') != 2)
 		return (0);
 	if (!IRM)
@@ -52,6 +52,17 @@ int		get_room(t_base *info, char *line)
 	return (1);
 }
 
+int		get_command(t_base *info, char *line)
+{
+	if(ft_strstr(line, "##start") && (info->boo = 1))
+		return (1);
+	else if (ft_strstr(line, "##end") && (info->boo = 2))
+		return(1);
+	else if (ft_strchr(line, '#'))
+		return (1);
+	return (0);
+}
+
 int		get_base_entry(t_base *info)
 {
 	char	*line;
@@ -59,15 +70,19 @@ int		get_base_entry(t_base *info)
 
 	line = NULL;
 	ret = 0;
-	info->base_entry = NULL;
+	IBE = NULL;
+	ft_printf("--- IN Base Entry ---\n");
 	while((ret = get_next_line(0, &line)) > 0)
 	{
-		if (IANT == -1)
-			IANT = ft_atoi(line);
-		if (IANT <= 0)
+		ft_printf("$$$$$ LINE  = |%s|\n", line);
+		if (get_command(info, line))
+		{
+			ft_printf("--- %d ---\n", info->boo);
+			IBE = ft_append(IBE, line, 2);
+			ft_printf("--- SEG OU PAS ---\n");
+		}
+		else if (IANT == -1 && (IANT = ft_atoi(line)) && IANT <= 0)
 			return (0);
-		if (IBE == NULL)
-			IBE = ft_strdup(line, 1);
 		else
 		{
 			if(!(get_room(info, line)))
@@ -76,6 +91,7 @@ int		get_base_entry(t_base *info)
 		}
 		IBE = ft_append(IBE, "\n", 0);
 	}
+	ft_printf("--- END Base Entry ---\n");
 	return (1);
 }
 
@@ -88,7 +104,8 @@ int		main(void)
 
 	info = ft_memalloc(sizeof(t_base), 0);
 	i = 0;
-	IANT = -1; 
+	info->boo = 0;
+	IANT = -1;
 	IRM = NULL;
 	ITB = NULL;
 	IMX = NULL;
@@ -106,6 +123,7 @@ int		main(void)
 	ft_printf("***** Tube *****\n");
 	ft_printf(ITB);
 	ft_printf("+++++ Matrix +++++\n");
+	ft_printf("@@@@@@ ANT = %d @@@@@@\n", IANT);
 	while (i < IMSZ)
 	{
 		j = 0;

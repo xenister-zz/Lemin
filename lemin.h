@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/02/09 06:48:57 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/10 16:45:33 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_base
 	int		**matrix;
 	int		mxsize;
 	int		fourmi;
+	int		boo;
 }				t_base;
 
 int		main(void);
