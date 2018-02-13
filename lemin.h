@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/02/10 16:45:33 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/13 00:38:36 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define ITB info->tube
 # define IMX info->matrix
 # define IMSZ info->mxsize
+# define IBOO info->boo
 
 typedef struct	s_base
 {
@@ -28,6 +29,8 @@ typedef struct	s_base
 	char	*room;
 	char	*tube;
 	int		**matrix;
+	char	*start;
+	char	*end;
 	int		mxsize;
 	int		fourmi;
 	int		boo;
