@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/13 02:48:47 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/13 05:16:46 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,22 @@ int		get_tube(t_base *info, char	*line)
 }
 
 int		get_room(t_base *info, char *line)
-{ 
+{
 	ft_printf("--- IN ROOM ---%d-\n", IBOO);
-	if ((IBOO == 4) && (IBOO = 0))
+	if (IBOO == 4)
+	{
+		IBOO = 0;
 		return(1);
+	}
 	if (ft_strchr(line, '-'))
 		return (get_tube(info, line));
 	if (ft_count_char(line, ' ') != 2)
 		return (0);
 	else
+	{
+		ft_printf("--- IN else *******************%d-\n", IBOO);
 		IRM = ft_append(IRM, line, 0);
+	}
 	IRM = ft_append(IRM, "\n", 0);
 	return (1);
 }
@@ -61,7 +67,10 @@ int		get_command(t_base *info, char *line)
 	else
 	{
 		if (IBOO == 1)
+		{
 			info->start = ft_append(ft_strdup(line, 0), "\n", 1);
+			IRM = ft_append(info->start, IRM, 1);
+		}
 		if (IBOO == 2)
 			info->end = ft_append(ft_strdup(line, 0), "\n", 1);
 		IBOO = IBOO > 0 ? 4 : 0;
@@ -88,12 +97,11 @@ int		get_base_entry(t_base *info)
 			return (0);
 		else if (IANT == -1 && (IANT = ft_atoi(line)) && IANT <= 0)
 			return (0);
+		IBOO = IBOO == 3 ? 0 : IBOO;
 		IBE = ft_append(IBE, line, 2);
 		IBE = ft_append(IBE, "\n", 0);
 	}
-	ft_printf("--- END Base Entry ---\n");
-	ft_printf("--- START = %s ---\n", info->start);
-	ft_printf("--- END = %s ---\n", info->end);
+	IRM = ft_append(IRM, info->end, 2);
 	return (1);
 }
 
