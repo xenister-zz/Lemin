@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/13 05:16:46 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/13 07:49:03 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ int		create_matrix(t_base *info)
 int		get_tube(t_base *info, char	*line)
 {
 	ft_printf("--- IN TUBE ---\n");
-	if (!ITB)
-		ITB = ft_strdup(line, 0);
-	else
-		ITB = ft_append(ITB, line, 0);
+	
+	ITB = ft_append(ITB, line, 0);
 	ITB = ft_append(ITB, "\n", 0);
 	return (1);
 }
@@ -45,10 +43,7 @@ int		get_room(t_base *info, char *line)
 	if (ft_count_char(line, ' ') != 2)
 		return (0);
 	else
-	{
-		ft_printf("--- IN else *******************%d-\n", IBOO);
 		IRM = ft_append(IRM, line, 0);
-	}
 	IRM = ft_append(IRM, "\n", 0);
 	return (1);
 }
@@ -121,7 +116,7 @@ int		main(void)
 	IMX = NULL;
 	if (!(get_base_entry(info)) && ft_printf("ERROR"))
 		return (0);
-	if ((!IMX))
+	/*if ((!IMX))
 	create_matrix(info);
 	ft_printf("--- Base Entry ---\n");
 	ft_printf(IBE);
@@ -140,6 +135,6 @@ int		main(void)
 		}
 		ft_printf("\n");
 		i++;
-	}
+	}*/
 	return(0);
 }
