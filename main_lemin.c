@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/15 16:10:51 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/15 19:53:32 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		get_tube(t_base *info, char	*line)
 	return (1);
 }
 
-int		ft_check_room(char *line)
+int		ft_check_tube(char *line)
 {
 	char	*tmp; 
 
@@ -46,6 +46,9 @@ int		ft_check_room(char *line)
 	char	*tmp; 
 
 	tmp = ft_strsub(line, 0, ft_strclen(line, ' '));
+	if (!tmp || tmp[0] == 'L' || tmp[0] == '#')
+		return (0)
+	
 	if (ft_strchr(tmp, 'L') || ft_strchr(tmp, '#'))
 		return (0);
 	return(1);

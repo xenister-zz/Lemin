@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/02/13 00:38:36 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/15 19:55:02 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,17 @@ typedef struct	s_base
 	int		**matrix;
 	char	*start;
 	char	*end;
+	t_list	list_house;
 	int		mxsize;
 	int		fourmi;
 	int		boo;
 }				t_base;
+
+typedef struct  s_house
+{
+	char	*name;
+	t_list	tube;
+}				t_house;
 
 int		main(void);
 int		get_base_entry(t_base *info);
