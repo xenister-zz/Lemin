@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/13 07:49:03 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/15 16:10:51 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,31 @@ int		create_matrix(t_base *info)
 int		get_tube(t_base *info, char	*line)
 {
 	ft_printf("--- IN TUBE ---\n");
-	
+	if (!ft_check_tube(line))
+		return (2);
 	ITB = ft_append(ITB, line, 0);
 	ITB = ft_append(ITB, "\n", 0);
 	return (1);
+}
+
+int		ft_check_room(char *line)
+{
+	char	*tmp; 
+
+	tmp = ft_strsub(line, 0, ft_strclen(line, ' '));
+	if (ft_strchr(tmp, 'L') || ft_strchr(tmp, '#'))
+		return (0);
+	return(1);
+}
+
+int		ft_check_room(char *line)
+{
+	char	*tmp; 
+
+	tmp = ft_strsub(line, 0, ft_strclen(line, ' '));
+	if (ft_strchr(tmp, 'L') || ft_strchr(tmp, '#'))
+		return (0);
+	return(1);
 }
 
 int		get_room(t_base *info, char *line)
@@ -42,7 +63,7 @@ int		get_room(t_base *info, char *line)
 		return (get_tube(info, line));
 	if (ft_count_char(line, ' ') != 2)
 		return (0);
-	else
+	else if (ft_check_room(line))
 		IRM = ft_append(IRM, line, 0);
 	IRM = ft_append(IRM, "\n", 0);
 	return (1);

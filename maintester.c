@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 23:40:16 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/12 23:40:20 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/15 14:21:51 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,17 @@ int		main()
 {
     char	*pouet;
 
-	pouet = "patate";
-	pouet = ft_add_newline(pouet, 0);
-	ft_printf("|%s|", pouet);
+	pouet = "pattedepain-*+ p++9554oire   petit mais cousteau";
+	pouet = ft_str_nword(pouet, 0, ' ');
+	ft_printf("|%s|\n", pouet);
+	pouet = "pattedepain-*+ p++9554oire   petit mais cousteau";
+	pouet = ft_str_nword(pouet, 1, ' ');
+	ft_printf("|%s|\n", pouet);
+	pouet = "pattedepain-*+ p++9554oire   petit mais cousteau";
+	pouet = ft_str_nword(pouet, 2, ' ');
+	ft_printf("|%s|\n", pouet);
+	pouet = "pattedepain-*+ p++9554oire   petit mais cousteau";
+	pouet = ft_str_nword(pouet, 3, ' ');
+	ft_printf("|%s|\n", pouet);
 	return (0);
 }

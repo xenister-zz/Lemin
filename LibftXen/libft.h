@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 14:16:30 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/13 00:24:33 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/15 13:45:27 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,6 @@ int				get_next_line(const int fd, char **line);
 char			**ft_addchartable(char **table, char *toadd, int size);
 int				**ft_inttable(int **table, int sizex, int sizey);
 int				ft_print_table(char **table, int newline);
+char    		*ft_str_nword(char *str, int n, char c);
 
 #endif
