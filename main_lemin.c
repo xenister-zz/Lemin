@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/15 19:53:32 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/16 19:18:45 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		create_matrix(t_base *info)
 {
 	int		size;
 
-	if ((!IMX) && (IMSZ = ft_count_char(IRM, '\n')))
+	if ((!IMX) && (IMSZ = info->index))
 		IMX = ft_inttable(IMX, IMSZ, IMSZ);
 	return (1);
 }
@@ -24,33 +24,45 @@ int		create_matrix(t_base *info)
 int		get_tube(t_base *info, char	*line)
 {
 	ft_printf("--- IN TUBE ---\n");
-	if (!ft_check_tube(line))
+	if (!ft_check_tube(info, line))
 		return (2);
 	ITB = ft_append(ITB, line, 0);
 	ITB = ft_append(ITB, "\n", 0);
 	return (1);
 }
 
-int		ft_check_tube(char *line)
+int		ft_check_tube(t_base *info, char *line)
 {
-	char	*tmp; 
+	char	*tmp;
 
+	if (info->start)
 	tmp = ft_strsub(line, 0, ft_strclen(line, ' '));
 	if (ft_strchr(tmp, 'L') || ft_strchr(tmp, '#'))
 		return (0);
 	return(1);
 }
 
-int		ft_check_room(char *line)
+int		ft_check_room(t_base *info, char *line)
 {
-	char	*tmp; 
+	char	*tmp;
+	t_house *thouse;
 
 	tmp = ft_strsub(line, 0, ft_strclen(line, ' '));
 	if (!tmp || tmp[0] == 'L' || tmp[0] == '#')
-		return (0)
-	
-	if (ft_strchr(tmp, 'L') || ft_strchr(tmp, '#'))
 		return (0);
+	else
+	{
+		thouse = ft_memalloc(sizeof(*thouse), 0);
+		thouse->index = info->index;
+		if (info->start && (thouse->name = info->start))
+			thouse->index = 0;
+		else 
+			info->index++;
+		thouse->name = tmp;
+		ft_lstadd(&info->list_house, ft_lstnew(thouse, sizeof(*thouse)));
+		free(thouse);
+
+	}
 	return(1);
 }
 
@@ -64,11 +76,10 @@ int		get_room(t_base *info, char *line)
 	}
 	if (ft_strchr(line, '-'))
 		return (get_tube(info, line));
-	if (ft_count_char(line, ' ') != 2)
+	if (line[0] == ' ' || ft_count_char(line, ' ') != 2)
 		return (0);
-	else if (ft_check_room(line))
-		IRM = ft_append(IRM, line, 0);
-	IRM = ft_append(IRM, "\n", 0);
+	else if (ft_check_room(info, line))
+		
 	return (1);
 }
 
@@ -86,10 +97,7 @@ int		get_command(t_base *info, char *line)
 	else
 	{
 		if (IBOO == 1)
-		{
 			info->start = ft_append(ft_strdup(line, 0), "\n", 1);
-			IRM = ft_append(info->start, IRM, 1);
-		}
 		if (IBOO == 2)
 			info->end = ft_append(ft_strdup(line, 0), "\n", 1);
 		IBOO = IBOO > 0 ? 4 : 0;
@@ -107,10 +115,11 @@ int		get_base_entry(t_base *info)
 	IBE = NULL;
 	info->start = NULL;
 	info->end = NULL;
+	info->index = 1;
 	ft_printf("--- IN Base Entry ---\n");
 	while((ret = get_next_line(0, &line)) > 0)
 	{
-		ft_printf("$$$$$ LINE  = |%s|\n", line);
+		//ft_printf("$$$$$ LINE  = |%s|\n", line);
 		get_command(info, line);
 		if (IANT > 0 && (IBOO == 0 || IBOO == 4) && (!(get_room(info, line))))
 			return (0);
@@ -120,7 +129,6 @@ int		get_base_entry(t_base *info)
 		IBE = ft_append(IBE, line, 2);
 		IBE = ft_append(IBE, "\n", 0);
 	}
-	IRM = ft_append(IRM, info->end, 2);
 	return (1);
 }
 
