@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/02/16 19:17:31 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/19 15:59:09 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # define IMX info->matrix
 # define IMSZ info->mxsize
 # define IBOO info->boo
-# define ILC info->list_house->content
+# define ILH info->list_house
+# define ILC ((t_house *)info->list_house->content)
 # define ILN info->list_house->next
 
 typedef struct	s_base

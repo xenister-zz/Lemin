@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/16 19:18:45 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/19 16:03:53 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int		ft_check_room(t_base *info, char *line)
 {
 	char	*tmp;
 	t_house *thouse;
+	t_list  *tempo;
 
+	ft_printf("ENTRY CHECK ROOM\n");
+	ft_printf("LINE  ==  %s|\n", line);
 	tmp = ft_strsub(line, 0, ft_strclen(line, ' '));
 	if (!tmp || tmp[0] == 'L' || tmp[0] == '#')
 		return (0);
@@ -60,9 +63,16 @@ int		ft_check_room(t_base *info, char *line)
 			info->index++;
 		thouse->name = tmp;
 		ft_lstadd(&info->list_house, ft_lstnew(thouse, sizeof(*thouse)));
+		ft_printf("name room |%s|\n", thouse->name);
 		free(thouse);
-
 	}
+	tempo = info->list_house;
+	while (ILN != NULL)
+	{
+		ft_printf("Index = |%d| - Name = |%s|\n", ILC->index, ILC->name);
+		ILH = ILN;
+	}
+	ILH = tempo;
 	return(1);
 }
 
@@ -78,8 +88,8 @@ int		get_room(t_base *info, char *line)
 		return (get_tube(info, line));
 	if (line[0] == ' ' || ft_count_char(line, ' ') != 2)
 		return (0);
-	else if (ft_check_room(info, line))
-		
+	else 
+		return (ft_check_room(info, line));
 	return (1);
 }
 
@@ -97,10 +107,12 @@ int		get_command(t_base *info, char *line)
 	else
 	{
 		if (IBOO == 1)
-			info->start = ft_append(ft_strdup(line, 0), "\n", 1);
+			info->start = ft_strdup(line, 0);
 		if (IBOO == 2)
-			info->end = ft_append(ft_strdup(line, 0), "\n", 1);
+			info->end = ft_strdup(line, 0);
 		IBOO = IBOO > 0 ? 4 : 0;
+		ft_printf("START |%s|\n", info->start);
+		ft_printf("END |%s|\n", info->end);
 	}
 	return (0);
 }
@@ -143,7 +155,6 @@ int		main(void)
 	i = 0;
 	IBOO = 0;
 	IANT = -1;
-	IRM = NULL;
 	ITB = NULL;
 	IMX = NULL;
 	if (!(get_base_entry(info)) && ft_printf("ERROR"))
