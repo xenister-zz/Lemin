@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/19 16:03:53 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/20 23:20:16 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,55 +24,58 @@ int		create_matrix(t_base *info)
 int		get_tube(t_base *info, char	*line)
 {
 	ft_printf("--- IN TUBE ---\n");
-	if (!ft_check_tube(info, line))
-		return (2);
-	ITB = ft_append(ITB, line, 0);
-	ITB = ft_append(ITB, "\n", 0);
+	if (info->end && !(check_room(info, info->end)) && (info->end = NULL))
+		return (0);
 	return (1);
 }
 
-int		ft_check_tube(t_base *info, char *line)
+int		check_tube(t_base *info, char *line)
 {
-	char	*tmp;
-
-	if (info->start)
-	tmp = ft_strsub(line, 0, ft_strclen(line, ' '));
-	if (ft_strchr(tmp, 'L') || ft_strchr(tmp, '#'))
-		return (0);
+	ft_printf("--- IN CHECK TUBE ---\n");
+	
 	return(1);
 }
 
-int		ft_check_room(t_base *info, char *line)
+int		list_room(t_base *info, int index, char *name)
+{
+	t_house		*thouse;
+	t_list		*tempo;
+ 
+
+	if (!(thouse = ft_memalloc(sizeof(*thouse), 0)))
+		return (0);
+	thouse->index = index;
+	thouse->name = name;
+	ft_lstadd(&info->list_house, ft_lstnew(thouse, sizeof(*thouse)));
+	free(thouse);
+	tempo = info->list_house;
+	ft_printf("--------------PRINTING LIST----------------\n");
+	while (ILC->name || ILN != NULL)
+	{
+		ft_printf("Index = |%d| - Name = |%s|\n", ILC->index, ILC->name);
+		if (ILN != NULL)
+			ILH = ILN;
+		else
+			break ;
+	}
+	ILH = tempo;
+	return (1);
+}
+
+int		check_room(t_base *info, char *line)
 {
 	char	*tmp;
-	t_house *thouse;
-	t_list  *tempo;
-
+	
 	ft_printf("ENTRY CHECK ROOM\n");
 	ft_printf("LINE  ==  %s|\n", line);
 	tmp = ft_strsub(line, 0, ft_strclen(line, ' '));
 	if (!tmp || tmp[0] == 'L' || tmp[0] == '#')
 		return (0);
-	else
-	{
-		thouse = ft_memalloc(sizeof(*thouse), 0);
-		thouse->index = info->index;
-		if (info->start && (thouse->name = info->start))
-			thouse->index = 0;
-		else 
-			info->index++;
-		thouse->name = tmp;
-		ft_lstadd(&info->list_house, ft_lstnew(thouse, sizeof(*thouse)));
-		ft_printf("name room |%s|\n", thouse->name);
-		free(thouse);
-	}
-	tempo = info->list_house;
-	while (ILN != NULL)
-	{
-		ft_printf("Index = |%d| - Name = |%s|\n", ILC->index, ILC->name);
-		ILH = ILN;
-	}
-	ILH = tempo;
+	else if (IBOO == 1)
+		return (list_room(info, 0, line));
+	else if (!(list_room(info, info->index, tmp)))
+			return (0);
+	info->index++;
 	return(1);
 }
 
@@ -88,8 +91,8 @@ int		get_room(t_base *info, char *line)
 		return (get_tube(info, line));
 	if (line[0] == ' ' || ft_count_char(line, ' ') != 2)
 		return (0);
-	else 
-		return (ft_check_room(info, line));
+	else
+		return (check_room(info, line));
 	return (1);
 }
 
@@ -107,12 +110,12 @@ int		get_command(t_base *info, char *line)
 	else
 	{
 		if (IBOO == 1)
-			info->start = ft_strdup(line, 0);
+			if (!(check_room(info, line)))
+				return (0);
 		if (IBOO == 2)
 			info->end = ft_strdup(line, 0);
 		IBOO = IBOO > 0 ? 4 : 0;
-		ft_printf("START |%s|\n", info->start);
-		ft_printf("END |%s|\n", info->end);
+		ft_printf("END == |%s|\n", info->end);
 	}
 	return (0);
 }
@@ -125,7 +128,6 @@ int		get_base_entry(t_base *info)
 	line = NULL;
 	ret = 0;
 	IBE = NULL;
-	info->start = NULL;
 	info->end = NULL;
 	info->index = 1;
 	ft_printf("--- IN Base Entry ---\n");
@@ -159,6 +161,7 @@ int		main(void)
 	IMX = NULL;
 	if (!(get_base_entry(info)) && ft_printf("ERROR"))
 		return (0);
+	
 	/*if ((!IMX))
 	create_matrix(info);
 	ft_printf("--- Base Entry ---\n");
