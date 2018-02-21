@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/20 23:20:16 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:09:10 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int		create_matrix(t_base *info)
 int		get_tube(t_base *info, char	*line)
 {
 	ft_printf("--- IN TUBE ---\n");
-	if (info->end && !(check_room(info, info->end)) && (info->end = NULL))
+	if (info->end && !(check_room(info, info->end)))
 		return (0);
+	else
+		info->end = NULL;
 	return (1);
 }
 
@@ -133,7 +135,7 @@ int		get_base_entry(t_base *info)
 	ft_printf("--- IN Base Entry ---\n");
 	while((ret = get_next_line(0, &line)) > 0)
 	{
-		//ft_printf("$$$$$ LINE  = |%s|\n", line);
+		ft_printf("$$$$$ LINE  = |%s|\n", line);
 		get_command(info, line);
 		if (IANT > 0 && (IBOO == 0 || IBOO == 4) && (!(get_room(info, line))))
 			return (0);
