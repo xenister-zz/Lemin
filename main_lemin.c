@@ -6,97 +6,11 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/21 17:09:10 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/22 19:42:59 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
-int		create_matrix(t_base *info)
-{
-	int		size;
-
-	if ((!IMX) && (IMSZ = info->index))
-		IMX = ft_inttable(IMX, IMSZ, IMSZ);
-	return (1);
-}
-
-int		get_tube(t_base *info, char	*line)
-{
-	ft_printf("--- IN TUBE ---\n");
-	if (info->end && !(check_room(info, info->end)))
-		return (0);
-	else
-		info->end = NULL;
-	return (1);
-}
-
-int		check_tube(t_base *info, char *line)
-{
-	ft_printf("--- IN CHECK TUBE ---\n");
-	
-	return(1);
-}
-
-int		list_room(t_base *info, int index, char *name)
-{
-	t_house		*thouse;
-	t_list		*tempo;
- 
-
-	if (!(thouse = ft_memalloc(sizeof(*thouse), 0)))
-		return (0);
-	thouse->index = index;
-	thouse->name = name;
-	ft_lstadd(&info->list_house, ft_lstnew(thouse, sizeof(*thouse)));
-	free(thouse);
-	tempo = info->list_house;
-	ft_printf("--------------PRINTING LIST----------------\n");
-	while (ILC->name || ILN != NULL)
-	{
-		ft_printf("Index = |%d| - Name = |%s|\n", ILC->index, ILC->name);
-		if (ILN != NULL)
-			ILH = ILN;
-		else
-			break ;
-	}
-	ILH = tempo;
-	return (1);
-}
-
-int		check_room(t_base *info, char *line)
-{
-	char	*tmp;
-	
-	ft_printf("ENTRY CHECK ROOM\n");
-	ft_printf("LINE  ==  %s|\n", line);
-	tmp = ft_strsub(line, 0, ft_strclen(line, ' '));
-	if (!tmp || tmp[0] == 'L' || tmp[0] == '#')
-		return (0);
-	else if (IBOO == 1)
-		return (list_room(info, 0, line));
-	else if (!(list_room(info, info->index, tmp)))
-			return (0);
-	info->index++;
-	return(1);
-}
-
-int		get_room(t_base *info, char *line)
-{
-	ft_printf("--- IN ROOM ---%d-\n", IBOO);
-	if (IBOO == 4)
-	{
-		IBOO = 0;
-		return(1);
-	}
-	if (ft_strchr(line, '-'))
-		return (get_tube(info, line));
-	if (line[0] == ' ' || ft_count_char(line, ' ') != 2)
-		return (0);
-	else
-		return (check_room(info, line));
-	return (1);
-}
 
 int		get_command(t_base *info, char *line)
 {
@@ -122,12 +36,10 @@ int		get_command(t_base *info, char *line)
 	return (0);
 }
 
-int		get_base_entry(t_base *info)
+int		get_base_entry(t_base *info, char *line)
 {
-	char	*line;
 	int		ret;
 
-	line = NULL;
 	ret = 0;
 	IBE = NULL;
 	info->end = NULL;
@@ -148,8 +60,6 @@ int		get_base_entry(t_base *info)
 	return (1);
 }
 
-
-
 int		main(void)
 {
 	t_base	*info;
@@ -161,7 +71,7 @@ int		main(void)
 	IANT = -1;
 	ITB = NULL;
 	IMX = NULL;
-	if (!(get_base_entry(info)) && ft_printf("ERROR"))
+	if (!(get_base_entry(info, NULL)) && ft_printf("ERROR"))
 		return (0);
 	
 	/*if ((!IMX))
