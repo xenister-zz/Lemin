@@ -6,7 +6,7 @@
 #    By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/09 17:53:05 by susivagn          #+#    #+#              #
-#    Updated: 2018/02/15 13:45:47 by susivagn         ###   ########.fr        #
+#    Updated: 2018/02/26 18:13:36 by susivagn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,7 +114,7 @@ SRC = ft_bzero.c \
 	  ft_addchartable.c \
 	  ft_inttable.c \
 	  ft_print_table.c \
-	  ft_str_nword.c
+	  ft_str_nword.c \
 
 OFILE = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:19:46 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/22 19:20:29 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/26 19:45:13 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ int		list_room(t_base *info, int index, char *name)
 	t_house		*thouse;
 	t_list		*tempo;
  
-
 	if (!(thouse = ft_memalloc(sizeof(*thouse), 0)))
 		return (0);
 	thouse->index = index;
 	thouse->name = name;
 	ft_lstadd(&info->list_house, ft_lstnew(thouse, sizeof(*thouse)));
 	free(thouse);
-	tempo = info->list_house;
+	tempo = ILH;
 	ft_printf("--------------PRINTING LIST----------------\n");
 	while (ILC->name || ILN != NULL)
 	{
@@ -41,14 +40,25 @@ int		list_room(t_base *info, int index, char *name)
 int		check_room(t_base *info, char *line)
 {
 	char	*tmp;
+	int		i;
 	
+	i = 0;
 	ft_printf("ENTRY CHECK ROOM\n");
-	ft_printf("LINE  ==  %s|\n", line);
-	tmp = ft_strsub(line, 0, ft_strclen(line, ' '));
+	while (++i != 3)
+	{
+		tmp = ft_str_nword(line, i, ' ');
+		if (ft_isalldigit(tmp) == 0)
+		{
+			free(tmp);
+			return (0);
+		}
+		free(tmp);
+	}
+	tmp = ft_str_nword(line, 0, ' ');
 	if (!tmp || tmp[0] == 'L' || tmp[0] == '#')
 		return (0);
 	else if (IBOO == 1)
-		return (list_room(info, 0, line));
+		return (list_room(info, 0, tmp));
 	else if (!(list_room(info, info->index, tmp)))
 			return (0);
 	info->index++;

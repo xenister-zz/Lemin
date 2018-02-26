@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/22 19:42:59 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/26 11:20:38 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		get_command(t_base *info, char *line)
 		IBOO = IBOO > 0 ? 4 : 0;
 		ft_printf("END == |%s|\n", info->end);
 	}
-	return (0);
+	return (1);
 }
 
 int		get_base_entry(t_base *info, char *line)
@@ -48,7 +48,8 @@ int		get_base_entry(t_base *info, char *line)
 	while((ret = get_next_line(0, &line)) > 0)
 	{
 		ft_printf("$$$$$ LINE  = |%s|\n", line);
-		get_command(info, line);
+		if (!get_command(info, line))
+			return (0);
 		if (IANT > 0 && (IBOO == 0 || IBOO == 4) && (!(get_room(info, line))))
 			return (0);
 		else if (IANT == -1 && (IANT = ft_atoi(line)) && IANT <= 0)

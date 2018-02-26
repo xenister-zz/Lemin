@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 11:28:37 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/15 18:59:40 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/26 11:30:11 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** c = witch separator to use to define a word
-** n = number of the word
+** n = n'th word
 ** ex: "hello world" (c = space) : (if n = 1 -> we get "world")
 */
 
