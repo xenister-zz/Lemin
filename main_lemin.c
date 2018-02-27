@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/26 11:20:38 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/27 15:31:11 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,22 @@ int		main(void)
 	ft_printf("***** Tube *****\n");
 	ft_printf(ITB);
 	ft_printf("+++++ Matrix +++++\n");
-	ft_printf("@@@@@@ ANT = %d @@@@@@\n", IANT);
+	ft_printf("@@@@@@ ANT = %d @@@@@@\n", IANT);*/
 	while (i < IMSZ)
 	{
 		j = 0;
 		while (j < IMSZ)
 		{
-			ft_printf("|%d", IMX[i][j++]);
+			if (IMX[i][j] == 1)
+			{
+				ft_printf("|");
+				ft_printf(RED"%d"C_DEFAULT, IMX[i][j++]);
+			}
+			else
+				ft_printf("|%d", IMX[i][j++]);
 		}
 		ft_printf("\n");
 		i++;
-	}*/
+	}
 	return(0);
 }

@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:19:46 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/26 19:45:13 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/27 15:58:47 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int		list_room(t_base *info, int index, char *name)
 		return (0);
 	thouse->index = index;
 	thouse->name = name;
+	thouse->use = 0;
+	if (index == 0)
+		thouse->ant = info->fourmi;
+	else
+		thouse->ant = 0;
 	ft_lstadd(&info->list_house, ft_lstnew(thouse, sizeof(*thouse)));
 	free(thouse);
 	tempo = ILH;
@@ -46,7 +51,8 @@ int		check_room(t_base *info, char *line)
 	ft_printf("ENTRY CHECK ROOM\n");
 	while (++i != 3)
 	{
-		tmp = ft_str_nword(line, i, ' ');
+		if (!(tmp = ft_str_nword(line, i, ' ')))
+			return (0);
 		if (ft_isalldigit(tmp) == 0)
 		{
 			free(tmp);
