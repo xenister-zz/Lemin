@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:58 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/27 16:57:18 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/01 20:10:29 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		get_tube(t_base *info, char	*line)
 	if (IMX && !(set_matrix(info, i, j)))
 		return (0);
 	i = 0;
+	info->papa = ft_memalloc((info->a + 1) * sizeof(int), 0);
 	/*while (i < IMSZ)
 	{
 		j = 0;
@@ -72,7 +73,6 @@ int		check_tube(t_base *info, char *tocheck)
 		ft_printf("NAME content ==== %s|\n", ILC->name);
 		ft_printf("NAME index ==== %d|\n", ILC->index);
 		ft_printf("FOURMI ==== %d|\n", ILC->ant);
-		ft_printf("USE ==== %d|\n", ILC->use);
 		if (ft_strstr(ILC->name, tocheck))
 		{
 			index = ILC->index;

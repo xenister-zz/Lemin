@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:19:46 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/27 15:58:47 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/01 20:10:10 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int		list_room(t_base *info, int index, char *name)
 		return (0);
 	thouse->index = index;
 	thouse->name = name;
-	thouse->use = 0;
 	if (index == 0)
 		thouse->ant = info->fourmi;
 	else

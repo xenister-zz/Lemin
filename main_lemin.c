@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/27 15:31:11 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:25:49 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int		main(void)
 	IANT = -1;
 	ITB = NULL;
 	IMX = NULL;
+	info->a = 1;
 	if (!(get_base_entry(info, NULL)) && ft_printf("ERROR"))
 		return (0);
 	
@@ -90,7 +91,7 @@ int		main(void)
 		j = 0;
 		while (j < IMSZ)
 		{
-			if (IMX[i][j] == 1)
+			if (IMX[i][j] != 0)
 			{
 				ft_printf("|");
 				ft_printf(RED"%d"C_DEFAULT, IMX[i][j++]);

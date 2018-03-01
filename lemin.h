@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/02/27 18:22:09 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/01 19:59:42 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ILH info->list_house
 # define ILC ((t_house *)info->list_house->content)
 # define ILN info->list_house->next
+# define IPAPA info->papa
 
 typedef struct	s_base
 {
@@ -36,6 +37,8 @@ typedef struct	s_base
 	int		fourmi;
 	int		boo;
 	int		index;
+	int		a;
+	int		*papa;
 }				t_base;
 
 typedef struct  s_house
@@ -43,7 +46,6 @@ typedef struct  s_house
 	int		index;
 	char	*name;
 	int		ant;
-	int		use;
 }				t_house;
 
 int		main(void);
@@ -56,6 +58,6 @@ int		list_room(t_base *info, int index, char *name);
 int		set_matrix(t_base *info, int a, int b);
 int		create_matrix(t_base *info);
 int		find_path(t_base *info);
-int		path_finder(t_base *info, int a, int b);
+int		path_cleaner(t_base *info, int i, int j);
 
 #endif
