@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:19:46 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/01 20:10:10 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/03 21:35:39 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int		list_room(t_base *info, int index, char *name)
 	ft_lstadd(&info->list_house, ft_lstnew(thouse, sizeof(*thouse)));
 	free(thouse);
 	tempo = ILH;
-	ft_printf("--------------PRINTING LIST----------------\n");
+	//ft_printf("--------------PRINTING LIST----------------\n");
 	while (ILC->name || ILN != NULL)
 	{
-		ft_printf("Index = |%d| - Name = |%s|\n", ILC->index, ILC->name);
+		//ft_printf("Index = |%d| - Name = |%s|\n", ILC->index, ILC->name);
 		if (ILN != NULL)
 			ILH = ILN;
 		else
@@ -47,7 +47,7 @@ int		check_room(t_base *info, char *line)
 	int		i;
 	
 	i = 0;
-	ft_printf("ENTRY CHECK ROOM\n");
+	//ft_printf("ENTRY CHECK ROOM\n");
 	while (++i != 3)
 	{
 		if (!(tmp = ft_str_nword(line, i, ' ')))
@@ -72,7 +72,7 @@ int		check_room(t_base *info, char *line)
 
 int		get_room(t_base *info, char *line)
 {
-	ft_printf("--- IN ROOM ---%d-\n", IBOO);
+	//ft_printf("--- IN ROOM ---%d-\n", IBOO);
 	if (IBOO == 4)
 	{
 		IBOO = 0;

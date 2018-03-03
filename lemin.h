@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/03/03 16:19:29 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/03 21:06:14 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # define ILC ((t_house *)info->list_house->content)
 # define ILN info->list_house->next
 # define IPAPA info->papa
-# define ISX info->savex
-# define ISZ info->savey
 # define ILT info->last
+# define ISJ info->sj
+# define ISI info->si
 
 typedef struct	s_base
 {
@@ -43,8 +43,8 @@ typedef struct	s_base
 	int		a;
 	int		**papa;
 	int		*last;
-	int		savex;
-	int		savey;
+	int		sj;
+	int		si;
 }				t_base;
 
 typedef struct  s_house
@@ -64,5 +64,6 @@ int		list_room(t_base *info, int index, char *name);
 int		set_matrix(t_base *info, int a, int b);
 int		create_matrix(t_base *info);
 int		path_finder(t_base *info, int i, int j);
+int		check_path(t_base *info, int i, int j);
 
 #endif

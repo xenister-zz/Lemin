@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:21:45 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/03 18:09:56 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/03 21:48:03 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,44 +61,80 @@ int		set_matrix(t_base *info, int a, int b)
 	}
 	return (0);
 }
+/*
+int		check_path(t_base *info, int i, int j)
+{
+	int		c;
+
+	c = 0;
+	if (ILT)
+	{
+		while (c < IMSZ)
+		{
+			if (c == i)
+		}
+	}
+}
+*/
+int		save_tube(t_base *info, int tube)
+{
+	int		c;
+
+	c = 0;
+	if (ILT)
+	{
+		while (c < IMSZ)
+		{
+			if (ILT[c] == tube)
+				return (0);
+			if (ILT[c] == 0)
+			{
+				ILT[c] = tube;
+				return (1);
+			}
+		}
+	}
+	return (0);
+}
 
 int		path_finder(t_base *info, int i, int j)
 {
-	int		end;
-	int		distance;
-
-	end = 0;
-	distance = 0;
-	ft_printf("ILT ++++++++\n");
-	while (i < IMSZ)
-		ft_printf("|%d", ILT[i++]);
-	ft_printf("\n");
-	ft_printf("ILT ++++++++\n");
-	i = 0;
-	while (i < 2)
+	int		patate = 0;
+	ISI = -1;
+	ISJ = -1;
+	ft_printf("----------IN PATH FINDER--- %d---- %d -------\n", ISI, ISJ);
+	while (!IBOO)
 	{
 		j = 0;
 		while (j < IMSZ)
 		{
-			ft_printf("|");
-			ft_printf(RED"%d"C_DEFAULT, IPAPA[i][j++]);
-		}
-		ft_printf("\n");
-		i++;
-	}
-	// i = 0;
-	// while (!end)
-	// {
-	// 	if ((i == (IMSZ - 1) && j == (IMSZ - 1)) && !end)
-	// 		return (0);
-	// 	j = 0;
-	// 	while (j < IMSZ)
-	// 	{
-			
-	// 	}
-	// 	i++;
-	// }
+			ft_printf("*** %d **** %d *** | *** %d *** %d *** |%d| **\n", i, j, ISI, ISJ, IMX[i][j]);
+			if (IMX[i][j] > 0  && (ISI != i && ISJ != j) &&
+			save_tube(info, IMX[i][j]))
+			{
+				ft_printf("=========\n");
+				patate = 0;
+				while (patate < IMSZ)
+					ft_printf("|%d|\n", ILT[patate++]);
+				ISI = i;
+				ISJ = j;
+				i++;
+				break ;
 
+			}
+			if ((j == (IMSZ - 1)) && IMX[i][j] == 0)
+			{
+				ft_printf("++++++++++\n");
+				IMX[ISI][ISJ] = 0;
+				IMX[ISJ][ISI] = 0;
+				i++;
+				break ;
+			}
+			if (j == (IMSZ - 1) && IMX[i][j] > 0 && (IBOO = 1))
+				break ;
+			j++;
+		}
+	}
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:58 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/03 16:21:53 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/03 21:35:28 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		get_tube(t_base *info, char	*line)
 	int		i;
 	int		j;
 
-	ft_printf("--- IN TUBE ---\n");
+	//ft_printf("--- IN TUBE ---\n");
 	if (info->end && !get_end_room(info))
 		return (0);
 	if ((i = check_tube(info, ft_str_nword(line, 0, '-'))) == -1)
@@ -35,7 +35,7 @@ int		get_tube(t_base *info, char	*line)
 		return (0);
 	if (!IMX)
 		create_matrix(info);
-	ft_printf("++++++++|%d|++|%d|++++++++\n", i, j);
+	//ft_printf("++++++++|%d|++|%d|++++++++\n", i, j);
 	if (IMX && !(set_matrix(info, i, j)))
 		return (0);
 	return (1);
@@ -48,13 +48,13 @@ int		check_tube(t_base *info, char *tocheck)
 
 	tempo = ILH;
 	index = 0;
-	ft_printf("--- IN CHECK TUBE ---\n");
-	ft_printf("TUBE == %s|\n", tocheck);
+	//ft_printf("--- IN CHECK TUBE ---\n");
+	//ft_printf("TUBE == %s|\n", tocheck);
 	while (ILC->name || ILN != NULL)
 	{
-		ft_printf("NAME content ==== %s|\n", ILC->name);
-		ft_printf("NAME index ==== %d|\n", ILC->index);
-		ft_printf("FOURMI ==== %d|\n", ILC->ant);
+		//ft_printf("NAME content ==== %s|\n", ILC->name);
+		//ft_printf("NAME index ==== %d|\n", ILC->index);
+		//ft_printf("FOURMI ==== %d|\n", ILC->ant);
 		if (ft_strstr(ILC->name, tocheck))
 		{
 			index = ILC->index;
