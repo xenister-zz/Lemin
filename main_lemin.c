@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/02/28 19:25:49 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/03 16:49:09 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,12 @@ int		main(void)
 	ITB = NULL;
 	IMX = NULL;
 	info->a = 1;
+	info->papa = NULL;
+	info->last = NULL;
 	if (!(get_base_entry(info, NULL)) && ft_printf("ERROR"))
 		return (0);
-	
-	/*if ((!IMX))
-	create_matrix(info);
-	ft_printf("--- Base Entry ---\n");
-	ft_printf(IBE);
-	ft_printf("===== ROOM =====\n");
-	ft_printf(IRM);
-	ft_printf("***** Tube *****\n");
-	ft_printf(ITB);
-	ft_printf("+++++ Matrix +++++\n");
-	ft_printf("@@@@@@ ANT = %d @@@@@@\n", IANT);*/
+	if (!path_finder(info, 0, 0) && ft_printf("ERROR"))
+		return (0);
 	while (i < IMSZ)
 	{
 		j = 0;

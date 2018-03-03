@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:58 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/03 16:21:53 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/03 15:12:01 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,42 @@ int		get_tube(t_base *info, char	*line)
 		return (0);
 	if ((j = check_tube(info, ft_str_nword(line, 1, '-'))) == -1)
 		return (0);
-	if (!IMX)
-		create_matrix(info);
+	if ((!IMX) && (!create_matrix(info)))
+		return (0);
 	ft_printf("++++++++|%d|++|%d|++++++++\n", i, j);
 	if (IMX && !(set_matrix(info, i, j)))
 		return (0);
+	i = 0;
+	ft_printf("PRINT IPAPA\n");/*
+	while (i < 2)
+	{
+		j = 0;
+		while (j < IMSZ)
+		{
+			ft_printf("|");
+			ft_printf(RED"%d"C_DEFAULT, IPAPA[i][j++]);
+		}
+		ft_printf("\n");
+		i++;
+	}*/
+	ft_printf("END GET TUBE\n");
+	//info->papa = ft_memalloc((info->a + 1) * sizeof(int), -1);
+	/*while (i < IMSZ)
+	{
+		j = 0;
+		while (j < IMSZ)
+		{
+			if (IMX[i][j] == 1)
+			{
+				ft_printf("|");
+				ft_printf(RED"%d"C_DEFAULT, IMX[i][j++]);
+			}
+			else
+				ft_printf("|%d", IMX[i][j++]);
+		}
+		ft_printf("\n");
+		i++;
+	}*/
 	return (1);
 }
 
