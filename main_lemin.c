@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/03 21:49:44 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/05 21:21:56 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ int		main(void)
 	if (!(get_base_entry(info, NULL)) && ft_printf("ERROR"))
 		return (0);
 	IBOO = 0;
-	if (!path_finder(info, 0, 0) && ft_printf("ERROR"))
-		return (0);
+	//if (!path_finder(info, 0, 0) && ft_printf("ERROR"))
+	//	return (0);
 	ft_printf("ILT ++++++++\n");
 	while (i < IMSZ)
 		ft_printf("|%d", ILT[i++]);

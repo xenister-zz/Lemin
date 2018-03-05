@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:21:45 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/03 21:48:03 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/05 21:21:59 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,7 @@ int		set_matrix(t_base *info, int a, int b)
 	}
 	return (0);
 }
-/*
-int		check_path(t_base *info, int i, int j)
-{
-	int		c;
 
-	c = 0;
-	if (ILT)
-	{
-		while (c < IMSZ)
-		{
-			if (c == i)
-		}
-	}
-}
-*/
 int		save_tube(t_base *info, int tube)
 {
 	int		c;
@@ -94,6 +80,39 @@ int		save_tube(t_base *info, int tube)
 			}
 		}
 	}
+	return (0);
+}
+
+int		get_tube_matrice(t_base *info, int	tube, int  *a, int *b)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	if (IMX && tube)
+	{
+		while (i < IMSZ)
+		{
+			j = 0;
+			while (j < IMSZ)
+			{
+				if (IMX[i][j] == tube)
+				{
+					*a = i;
+					*b = j;
+					return (1);
+				}
+				j++;
+			}
+			i++;
+		}
+	}
+	return (0);
+}
+
+int		path_finderv3(t_base *info, int	i, int j)
+{
+	while ()
 	return (0);
 }
 
