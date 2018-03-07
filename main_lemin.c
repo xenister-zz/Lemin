@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/05 21:21:56 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/07 19:44:54 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int		get_command(t_base *info, char *line)
 {
-	if (IBOO == 0 && !ft_strstr(line, "###"))
+	if (IBOO == 0 && !ft_strcmp(line, "###"))
 	{
-		if(ft_strstr(line, "##start") && (IBOO = 1))
+		if(ft_strcmp(line, "##start") && (IBOO = 1))
 			return (1);
-		else if (ft_strstr(line, "##end") && (IBOO = 2))
+		else if (ft_strcmp(line, "##end") && (IBOO = 2))
 			return (1);
-		else if (ft_strchr(line, '#') && (IBOO = 3))
+		else if (ft_strcmp(line, "#") && (IBOO = 3))
 			return (1);
 	}
 	else

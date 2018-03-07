@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/03/05 20:59:00 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/07 17:56:59 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		create_matrix(t_base *info);
 int		path_finder(t_base *info, int i, int j);
 int		check_path(t_base *info, int i, int j);
 int		get_tube_matrice(t_base *info, int	tube, int  *a, int *b);
-int		path_finderv3(t_base *info, int	i, int j);
+int		path_finder(t_base *info, int	i, int j);
+int		path_finder_sup(t_base *info, int i, int j);
 
 #endif
