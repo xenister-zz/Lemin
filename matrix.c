@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:21:45 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/07 21:52:00 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/08 22:37:17 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,28 @@ int		save_room(t_base *info, int room, int rm)
 int		tube_cleaner(t_base *info, int	i, int j)
 {
 	int		c;
-
-	c = 0;
+	
+	info->a = 0;
 	while (++i < (IMSZ - 1))
 	{
 		j = 0;
-		while (++j < (IMSZ - 1))
+		c = 0;
+		while (j < IMSZ)
 		{
-			if (IMX[i][j] = 1)
+			if (IMX[i][j] == 1)
+			{
 				c++;
+				info->a = j;
+			}
+			if (j++ == (IMSZ - 1) && c == 1 &&
+				((info->a != 0) || (info->a != (IMSZ - 1))))
+			{
+				IMX[i][info->a] = 0;
+				IMX[info->a][i] = 0;
+			}
 		}
 	}
+	return (1);
 }
 
 int		rm_room(t_base *info, int room)
