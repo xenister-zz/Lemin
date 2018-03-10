@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:21:45 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/08 22:37:17 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/10 19:15:12 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int		create_matrix(t_base *info)
 		if (!(IPAPA = ft_inttable(IPAPA, IMSZ, 2)))
 			return (0);
 	IPAPA[0][0] = 0;
-	while (size < IMSZ)
-		IPAPA[0][size++] = -1;
+	while (size++ < IMSZ)
+		IPAPA[0][size] = -1;
+	IPAPA[1][0] = 1;
 	if (!ILT)
 		if (!(ILT = ft_memalloc(IMSZ * (sizeof(int)), 0)))
 			return (0);
@@ -61,32 +62,6 @@ int		set_matrix(t_base *info, int a, int b)
 	return (0);
 }
 
-int		save_room(t_base *info, int room, int rm)
-{
-	int		c;
-
-	c = 0;
-	//info->a
-	ft_printf("**** IN SAVE ROOM ****\n");
-	if (IPAPA && rm == 0)
-	{
-		if (IPAPA[1][room] == 0)
-			IPAPA[1][room] = 1;
-		while (c < IMSZ)
-		{
-			if (IPAPA[0][c] == room)
-				return (0);
-			if (IPAPA[0][c] == -1)
-			{
-				IPAPA[0][c] = room;
-				return (1);
-			}
-			c++;
-		}
-	}
-	return (0);
-}
-
 int		tube_cleaner(t_base *info, int	i, int j)
 {
 	int		c;
@@ -114,30 +89,49 @@ int		tube_cleaner(t_base *info, int	i, int j)
 	return (1);
 }
 
-int		rm_room(t_base *info, int room)
+int		save_neighbour(t_base *info, int room, int neighboor)
 {
 	int		c;
 
-	if (room > 0 && (c = IMSZ))
-		while (--c > -1)
-		{
-			if (IPAPA[0][c] == room)
-			{
-				IPAPA[0][c] = -1;
-				return (1);
-			}
-		}
+	c = 0;
+	if (ILT)
+	{
+		ILT[room] = neighboor;
+	}
+	return (0);
+}
+
+int		save_room(t_base *info, int room)
+{
+	int		c;
+
+	c = 0;
+	ft_printf("**** IN SAVE ROOM ****\n");
+	if (IPAPA[1][room] == 1 && IPAPA[0][room] > info->a)
+		return (0);
+	if (IPAPA[0][room] == -1)
+		return (0);
+	if (IPAPA[0][room] < info->a)
+		return (0);
+	else
+	{
+		IPAPA[0][room] = info->a;
+		return (1);
+	}
+	
 	return (0);
 }
 
 int		path_finder(t_base *info, int i, int j)
 {
 	IBOO = 0;
+	info->a = 0;
 	ft_printf("**** IN PATH FINDER ****\n");
-	while (!IBOO && i < IMSZ)
+	while (i < IMSZ)
 	{
-		if (IMX[i][j] == 1 && save_room(info, i, 0))
+		if (!save_room(info, i))
 			j = path_finder_sup(info, i, j);
+		}
 		i++;
 	}
 	return (0);
@@ -148,10 +142,11 @@ int		path_finder_sup(t_base *info, int i, int j)
 	ft_printf("**** IN PATH FINDER SUPPPPP ****\n");
 	while (!IBOO && j < IMSZ)
 	{
-		if (IMX[i][j] == 1 && save_room(info, j, 0))
+		if (IMX[i][j] == 1 && save_room(info, j))
 			return (j);
 		j++;
 	}
+	info->a--;
 	return (0);
 }
 

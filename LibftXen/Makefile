@@ -6,7 +6,7 @@
 #    By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/09 17:53:05 by susivagn          #+#    #+#              #
-#    Updated: 2018/02/26 18:13:36 by susivagn         ###   ########.fr        #
+#    Updated: 2018/03/09 13:28:48 by susivagn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,7 @@ FLAGS= -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OFILE)
-	@gcc -Wall -Werror -Wextra  -g -c $(SRC)
+	@gcc -Wall -Werror -Wextra -g -c $(SRC)
 	@ar rc $(NAME) $(OFILE)
 	@ranlib $(NAME)
 	@echo "*** LIBFT OK ***"
