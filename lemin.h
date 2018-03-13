@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/03/10 18:27:38 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/13 22:16:09 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int		get_tube_matrice(t_base *info, int	tube, int  *a, int *b);
 int		path_finder(t_base *info, int	i, int j);
 int		path_finder_sup(t_base *info, int i, int j);
 int		tube_cleaner(t_base *info, int	i, int j);
-int		save_neighbour(t_base *info, int room, int neighboor);
+int		save_neighbour(t_base *info, int room, int neighboor, int get);
 
 #endif
