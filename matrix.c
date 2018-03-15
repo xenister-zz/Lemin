@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:21:45 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/13 22:27:21 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/15 04:34:00 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int		create_matrix(t_base *info)
 	IPAPA[0][0] = 0;
 	while (size++ < IMSZ)
 		IPAPA[0][size] = -1;
-	IPAPA[1][0] = 1;
 	if (!ILT)
 	{
 		if (!(ILT = ft_memalloc(IMSZ * (sizeof(int)), -1)))
@@ -92,38 +91,37 @@ int		tube_cleaner(t_base *info, int	i, int j)
 	return (1);
 }
 
-int		save_neighbour(t_base *info, int room, int neighboor, int get)
-{
-	int		c;
-
-	c = 0;
-	if (get == 1 && ILT)
-	{
-		return (ILT[room]);
-	}
-	if (ILT)
-	{
-		ILT[room] = neighboor;
-	}
-	return (0);
-}
+// int		save_neighbour(t_base *info, int room, int neighboor)
+// {
+// 	if (ILT)
+// 	{
+// 		ILT[room] = neighboor;
+// 	}
+// 	return (0);
+// }
 
 int		save_room(t_base *info, int room)
 {
 	int		c;
 
 	c = 0;
-	ft_printf("**** IN SAVE ROOM ****\n");
-	if (IPAPA[0][room] == -1)
-		return (0);
-	if (IPAPA[1][room] == 1 && IPAPA[0][room] >= info->a)
-		return (0);
-	if (IPAPA[0][room] < info->a)
-		return (0);
-	else
+	ft_printf("++++ IN SAVE ROOM  room == |%d|\n", room);
+	if (IPAPA[1][room] == 0 && IPAPA[0][room] == -1)
 	{
+		ft_printf("++++ SORTIE SAVE ROOM == -1 ++++\n");
 		IPAPA[0][room] = info->a;
 		return (1);
+	}
+	if (IPAPA[1][room] == 1 && IPAPA[0][room] > info->a)
+	{
+		ft_printf("++++ ROOM VISITED WITH OVER DISTANCE ++++\n");
+		IPAPA[0][room] = info->a;
+		return (1);
+	}
+	if (IPAPA[0][room] < info->a)
+	{
+		ft_printf("++++  ++++\n");
+		return (0);
 	}
 	return (0);
 }
@@ -136,10 +134,18 @@ int		path_finder(t_base *info, int i, int j)
 	while (i < IMSZ)
 	{
 		ISJ = 0;
+		ft_printf("		I ==== %d	\n", i);
 		if (i == 0 || !save_room(info, i))
 		{
+			info->a++;
 			i = path_finder_sup(info, i, j);
 		}
+		else
+		{
+			info->a--;
+			i = ILT[i];
+		}
+		sleep(1);
 	}
 	return (0);
 }
@@ -147,20 +153,54 @@ int		path_finder(t_base *info, int i, int j)
 int		path_finder_sup(t_base *info, int i, int j)
 {
 	ft_printf("**** IN PATH FINDER SUPPPPP ****\n");
-	while (!IBOO && j < IMSZ)
+	ft_printf("--------------IPAPA-------------\n");
+	ft_print_int_tab(IPAPA, 2, IMSZ, "");
+	ft_printf("---------------LAST-------------\n");
+	ft_print_int_tab(&ILT, 1, IMSZ, "");
+	while (j < IMSZ)
 	{
+		ft_printf("	  J ==== %d	\n", j);
 		if (IMX[i][j] == 1 && save_room(info, j))
 		{
-			save_neighbour(info, j, i, 0);
-			if (ISJ == 0)
-				ISJ = j;
+			ft_printf("--------------IPAPA-------------\n");
+			ft_print_int_tab(IPAPA, 2, IMSZ, "");
+			ft_printf("---------------LAST-------------\n");
+			ILT[j] = i;
+			ft_print_int_tab(&ILT, 1, IMSZ, "");
+
 		}
-		if (j == (IMSZ - 1) && ISJ == 0)
-			return (save_neighbour(info, i, 0, 1));
+		if (j == (IMSZ - 1))
+		{
+			ft_printf("-------- SORTIE FINDER SUP --|%d|--\n", ILT[i]);
+			IPAPA[1][i] = 1;
+			return (get_short_tube(info));
+		}
 		j++;
 	}
-	info->a--;
 	return (0);
+}
+
+int		get_short_tube(t_base *info)
+{
+	int		i;
+	int		temp;
+	int		dist;
+
+	i = 0;
+	temp = 0;
+	dist = 2147483647;
+	ft_printf("---------IN GET SHORT TUBE--------\n");
+	while (i < IMSZ)
+	{
+		if (IPAPA[0][i] > 0 && IPAPA[1][i] == 0 && IPAPA[0][i] < dist)
+		{
+			dist = IPAPA[0][i];
+			temp = i;
+		}
+		i++;
+	}
+	ft_printf("---------EXIT GST == |%d|---------\n", temp);
+	return (temp);
 }
 
 /*

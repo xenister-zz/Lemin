@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/08 19:08:12 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:41:45 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ int		main(void)
 	IBOO = 0;
 	if (!tube_cleaner(info, 0, 0))
 		return (0);
-	/*if (!path_finder(info, 0, 0) && ft_printf("ERROR"))
-		return (0);*/
+	if (!path_finder(info, 0, 0) && ft_printf("ERROR"))
+		return (0);
 	ft_printf("ILT ++++++++\n");
 	while (i < IMSZ)
 		ft_printf("|%d", ILT[i++]);
