@@ -12,11 +12,13 @@ I 23 5
 ##end
 J 24 55
 A-C
-C-J
-A-I
+A-D
 B-C
 C-D
 C-E
+D-F
+F-I
+H-E
 E-H
-D-J
+I-J
 E-G

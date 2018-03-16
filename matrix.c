@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:21:45 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/15 04:34:00 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/16 21:38:30 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		create_matrix(t_base *info)
 
 	size = 0;
 	IMSZ = info->index;
-	ft_printf("*******IN CREATE MATRIX*******\n");
+	//ft_printf("*******IN CREATE MATRIX*******\n");
 	if ((!IMX))
 		if (!(IMX = ft_inttable(IMX, IMSZ, IMSZ)))
 			return (0);
@@ -44,8 +44,8 @@ int		set_matrix(t_base *info, int a, int b)
 
 	i = 0;
 	j = 0;
-	ft_printf("--------IN SET MATRIX---------\n");
-	ft_printf("---------|%d|--|%d|-----------\n", a, b);
+	//ft_printf("--------IN SET MATRIX---------\n");
+	//ft_printf("---------|%d|--|%d|-----------\n", a, b);
 	while (i < IMSZ)
 	{
 		j = 0;
@@ -105,22 +105,22 @@ int		save_room(t_base *info, int room)
 	int		c;
 
 	c = 0;
-	ft_printf("++++ IN SAVE ROOM  room == |%d|\n", room);
+	//ft_printf("++++ IN SAVE ROOM  room == |%d|\n", room);
 	if (IPAPA[1][room] == 0 && IPAPA[0][room] == -1)
 	{
-		ft_printf("++++ SORTIE SAVE ROOM == -1 ++++\n");
+		//ft_printf("++++ SORTIE SAVE ROOM == -1 ++++\n");
 		IPAPA[0][room] = info->a;
 		return (1);
 	}
 	if (IPAPA[1][room] == 1 && IPAPA[0][room] > info->a)
 	{
-		ft_printf("++++ ROOM VISITED WITH OVER DISTANCE ++++\n");
+		//ft_printf("++++ ROOM VISITED WITH OVER DISTANCE ++++\n");
 		IPAPA[0][room] = info->a;
 		return (1);
 	}
 	if (IPAPA[0][room] < info->a)
 	{
-		ft_printf("++++  ++++\n");
+		//ft_printf("++++  ++++\n");
 		return (0);
 	}
 	return (0);
@@ -130,11 +130,11 @@ int		path_finder(t_base *info, int i, int j)
 {
 	IBOO = 0;
 	info->a = 0;
-	ft_printf("**** IN PATH FINDER ****\n");
+	//ft_printf("**** IN PATH FINDER ****\n");
 	while (i < IMSZ)
 	{
 		ISJ = 0;
-		ft_printf("		I ==== %d	\n", i);
+		//ft_printf("		I ==== %d  | A ====  %d	\n", i, info->a);
 		if (i == 0 || !save_room(info, i))
 		{
 			info->a++;
@@ -145,33 +145,34 @@ int		path_finder(t_base *info, int i, int j)
 			info->a--;
 			i = ILT[i];
 		}
-		sleep(1);
+		if (info->a > IMSZ)
+			return (1);
 	}
 	return (0);
 }
 
 int		path_finder_sup(t_base *info, int i, int j)
 {
-	ft_printf("**** IN PATH FINDER SUPPPPP ****\n");
-	ft_printf("--------------IPAPA-------------\n");
-	ft_print_int_tab(IPAPA, 2, IMSZ, "");
-	ft_printf("---------------LAST-------------\n");
-	ft_print_int_tab(&ILT, 1, IMSZ, "");
+	// ft_printf("**** IN PATH FINDER SUPPPPP ****\n");
+	// ft_printf("--------------IPAPA-------------\n");
+	// ft_print_int_tab(IPAPA, 2, IMSZ, "");
+	// ft_printf("---------------LAST-------------\n");
+	// ft_print_int_tab(&ILT, 1, IMSZ, "");
 	while (j < IMSZ)
 	{
-		ft_printf("	  J ==== %d	\n", j);
+		// ft_printf("	  J ==== %d	\n", j);
 		if (IMX[i][j] == 1 && save_room(info, j))
 		{
-			ft_printf("--------------IPAPA-------------\n");
-			ft_print_int_tab(IPAPA, 2, IMSZ, "");
-			ft_printf("---------------LAST-------------\n");
+			// ft_printf("--------------IPAPA-------------\n");
+			// ft_print_int_tab(IPAPA, 2, IMSZ, "");
+			// ft_printf("---------------LAST-------------\n");
 			ILT[j] = i;
-			ft_print_int_tab(&ILT, 1, IMSZ, "");
+			//ft_print_int_tab(&ILT, 1, IMSZ, "");
 
 		}
 		if (j == (IMSZ - 1))
 		{
-			ft_printf("-------- SORTIE FINDER SUP --|%d|--\n", ILT[i]);
+			// ft_printf("-------- SORTIE FINDER SUP --|%d|--\n", ILT[i]);
 			IPAPA[1][i] = 1;
 			return (get_short_tube(info));
 		}
@@ -189,7 +190,7 @@ int		get_short_tube(t_base *info)
 	i = 0;
 	temp = 0;
 	dist = 2147483647;
-	ft_printf("---------IN GET SHORT TUBE--------\n");
+	//ft_printf("---------IN GET SHORT TUBE--------\n");
 	while (i < IMSZ)
 	{
 		if (IPAPA[0][i] > 0 && IPAPA[1][i] == 0 && IPAPA[0][i] < dist)
@@ -199,7 +200,7 @@ int		get_short_tube(t_base *info)
 		}
 		i++;
 	}
-	ft_printf("---------EXIT GST == |%d|---------\n", temp);
+	//ft_printf("---------EXIT GST == |%d|---------\n", temp);
 	return (temp);
 }
 

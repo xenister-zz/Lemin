@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/14 17:41:45 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/16 19:40:44 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		get_command(t_base *info, char *line)
 		if (IBOO == 2)
 			info->end = ft_strdup(line, 0);
 		IBOO = IBOO > 0 ? 4 : 0;
-		ft_printf("END == |%s|\n", info->end);
+		//ft_printf("END == |%s|\n", info->end);
 	}
 	return (1);
 }
@@ -44,10 +44,10 @@ int		get_base_entry(t_base *info, char *line)
 	IBE = NULL;
 	info->end = NULL;
 	info->index = 1;
-	ft_printf("--- IN Base Entry ---\n");
+	//ft_printf("--- IN Base Entry ---\n");
 	while((ret = get_next_line(0, &line)) > 0)
 	{
-		ft_printf("$$$$$ LINE  = |%s|\n", line);
+		//ft_printf("$$$$$ LINE  = |%s|\n", line);
 		if (!get_command(info, line))
 			return (0);
 		if (IANT > 0 && (IBOO == 0 || IBOO == 4) && (!(get_room(info, line))))
@@ -78,43 +78,46 @@ int		main(void)
 	if (!(get_base_entry(info, NULL)) && ft_printf("ERROR"))
 		return (0);
 	IBOO = 0;
+	ft_printf("%s\n", IBE);
 	if (!tube_cleaner(info, 0, 0))
 		return (0);
 	if (!path_finder(info, 0, 0) && ft_printf("ERROR"))
 		return (0);
-	ft_printf("ILT ++++++++\n");
-	while (i < IMSZ)
-		ft_printf("|%d", ILT[i++]);
-	ft_printf("\n");
-	ft_printf("ILT ++++++++\n");
-	i = 0;
-	while (i < 2)
-	{
-		j = 0;
-		while (j < IMSZ)
-		{
-			ft_printf("|");
-			ft_printf(RED"%d"C_DEFAULT, IPAPA[i][j++]);
-		}
-		ft_printf("\n");
-		i++;
-	}
-	i = 0;
-	while (i < IMSZ)
-	{
-		j = 0;
-		while (j < IMSZ)
-		{
-			if (IMX[i][j] != 0)
-			{
-				ft_printf("|");
-				ft_printf(RED"%d"C_DEFAULT, IMX[i][j++]);
-			}
-			else
-				ft_printf("|%d", IMX[i][j++]);
-		}
-		ft_printf("\n");
-		i++;
-	}
+	if (!get_path(info) && ft_printf("ERROR"))
+		return (0);
+	// ft_printf("ILT ++++++++\n");
+	// while (i < IMSZ)
+	// 	ft_printf("|%d", ILT[i++]);
+	// ft_printf("\n");
+	// ft_printf("ILT ++++++++\n");
+	// i = 0;
+	// while (i < 2)
+	// {
+	// 	j = 0;
+	// 	while (j < IMSZ)
+	// 	{
+	// 		ft_printf("|");
+	// 		ft_printf(RED"%d"C_DEFAULT, IPAPA[i][j++]);
+	// 	}
+	// 	ft_printf("\n");
+	// 	i++;
+	// }
+	// i = 0;
+	// while (i < IMSZ)
+	// {
+	// 	j = 0;
+	// 	while (j < IMSZ)
+	// 	{
+	// 		if (IMX[i][j] != 0)
+	// 		{
+	// 			ft_printf("|");
+	// 			ft_printf(RED"%d"C_DEFAULT, IMX[i][j++]);
+	// 		}
+	// 		else
+	// 			ft_printf("|%d", IMX[i][j++]);
+	// 	}
+	// 	ft_printf("\n");
+	// 	i++;
+	// }
 	return(0);
 }
