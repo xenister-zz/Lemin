@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 23:40:16 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/16 18:56:49 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/20 05:14:50 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,21 @@ int		main()
 	int		i = -1;
 	int		j;
 
-	pouet1 = "waka";
-	pouet2 = "patate";
-	pouet3 = "poundai";
-	pouet4 = "kolioty";
+	pouet1 = "12345";
+	pouet2 = "  1245";
+	pouet3 = "  12  456";
+	pouet4 = "1212145    ";
 
 	ft_printf("TEXT |%s|\n", pouet1);
 	ft_printf("TEXT |%s|\n", pouet2);
 	ft_printf("TEXT |%s|\n", pouet3);
 	ft_printf("TEXT |%s|\n", pouet4);
 	ft_printf("BEFORE\n");
-	gropouet = ft_addchartable(gropouet, pouet1, 4);
-	gropouet = ft_addchartable(gropouet, pouet3, 4);
-	gropouet = ft_addchartable(gropouet, pouet2, 4);
-	gropouet = ft_addchartable(gropouet, pouet4, 4);
-	i = -1;
-	ft_printf("AFTER\n");
-	while (gropouet[++i])
-	{
-		ft_printf("|%s|\n", gropouet[i]);
-	}
+
+	ft_printf("RES == |%d|\n", ft_isalldigit_space(pouet1));
+	ft_printf("RES == |%d|\n", ft_isalldigit_space(pouet2));
+	ft_printf("RES == |%d|\n", ft_isalldigit_space(pouet3));
+	ft_printf("RES == |%d|\n", ft_isalldigit_space(pouet4));
+	
 	return (0);
 }

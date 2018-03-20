@@ -3,7 +3,7 @@
 ##start
 start 0 0
 ##end
-end 1 1
+pat 0 0
 A0 2 2
 A1 3 3
 B0 4 4
@@ -19,13 +19,13 @@ C4 13 13
 start-A0
 start-B0
 A0-A1
-A1-end
+A1-pat
 A0-C1
 A1-B4
 C1-C2
 C2-C3
 C3-C4
-C4-end
+C4-pat
 B0-B1
 B1-B2
 B2-B3

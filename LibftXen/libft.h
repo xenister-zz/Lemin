@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 14:16:30 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/19 18:53:59 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/20 03:34:58 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,6 @@ int				**ft_inttable(int **table, int sizex, int sizey);
 int				ft_print_table(char **table, int newline);
 char    		*ft_str_nword(char *str, int n, char c);
 void			ft_print_int_tab(int **tab, int sizey, int sizex, char *str);
+int				ft_isalldigit_space(char *src);
 
 #endif

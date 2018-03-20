@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/20 02:41:24 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/20 05:39:35 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int		get_command(t_base *info, char *line)
 		if (IBOO == 2)
 			info->end = ft_strdup(line, 0);
 		IBOO = IBOO > 0 ? 4 : 0;
-		//ft_printf("END == |%s|\n", info->end);
 	}
 	return (1);
 }
@@ -44,15 +43,14 @@ int		get_base_entry(t_base *info, char *line)
 	IBE = NULL;
 	info->end = NULL;
 	info->index = 1;
-	//ft_printf("--- IN Base Entry ---\n");
 	while((ret = get_next_line(0, &line)) > 0)
 	{
-		//ft_printf("$$$$$ LINE  = |%s|\n", line);
 		if (!get_command(info, line))
 			return (0);
 		if (IANT > 0 && (IBOO == 0 || IBOO == 4) && (!(get_room(info, line))))
 			return (0);
-		else if (IANT == -1 && (IANT = ft_atoi(line)) && IANT <= 0)
+		else if (IANT == -1 && ft_isalldigit(line) &&
+			(IANT = ft_atoi(line)) && IANT <= 0)
 			return (0);
 		IBOO = IBOO == 3 ? 0 : IBOO;
 		IBE = ft_append(IBE, line, 2);
@@ -73,26 +71,26 @@ int		main(void)
 	info->a = 1;
 	info->papa = NULL;
 	info->last = NULL;
-	if (!(get_base_entry(info, NULL)) && ft_printf("ERROR"))
+	if (!(get_base_entry(info, NULL)) && ft_printf("ENTRY ERROR\n"))
 	{
-		sleep(3);
+		//sleep(3);
 		return (0);
 	}
 	IBOO = 0;
 	ft_printf("%s\n", IBE);
 	if (!tube_cleaner(info, 0, 0))
 	{
-		sleep(3);
+		//sleep(3);
 		return (0);
 	}
-	if (!path_finder(info, 0, 0) && ft_printf("ERROR"))
+	if (!path_finder(info, 0, 0) && ft_printf("PATH FINDER ERROR\n"))
 	{
-		sleep(3);
+		//sleep(3);
 		return (0);
 	}
-	if (!get_path(info) && ft_printf("ERROR"))
+	if (!get_path(info) && ft_printf("GET PATH ERROR\n"))
 	{
-		sleep(3);
+		//sleep(3);
 		return (0);
 	}
 	// ft_printf("ILT ++++++++\n");
