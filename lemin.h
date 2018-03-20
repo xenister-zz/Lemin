@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/03/16 20:28:33 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:39:15 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int		get_short_tube(t_base *info);
 int     get_path(t_base *info);
 int		get_name_room(t_base *info, int index);
 int		print_path(t_base *info, char **room, int c);
+int		move_ant(t_base *info, int c);
 
 #endif
