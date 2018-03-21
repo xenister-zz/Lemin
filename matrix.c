@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:21:45 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/20 03:17:44 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/21 15:05:45 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		create_matrix(t_base *info)
 		if (!(IPAPA = ft_inttable(IPAPA, IMSZ, 2)))
 			return (0);
 	IPAPA[0][0] = 0;
-	while (size++ < IMSZ)
+	while (size++ < (IMSZ - 1))
 		IPAPA[0][size] = -1;
 	if (!ILT)
 	{

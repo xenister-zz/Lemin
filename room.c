@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:19:46 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/21 11:39:19 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/21 14:03:39 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,10 @@ int		get_room(t_base *info, char *line)
 	if (ft_strchr(line, '-'))
 		return (get_tube(info, line));
 	if (line[0] == ' ' || ft_count_char(line, ' ') != 2)
+	{
+		free(line);
 		return (0);
+	}
 	else
 		return (check_room(info, line));
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/21 11:03:17 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:26:09 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@ int		get_command(t_base *info, char *line)
 	{
 		if (IBOO == 1)
 			if (!(check_room(info, line)))
+			{
+				free(line);
 				return (0);
+			}
 		if (IBOO == 2)
 			info->end = ft_strdup(line, 0);
 		IBOO = IBOO > 0 ? 4 : 0;
 	}
+	ft_printf("EXIT GET COMMAND\n");
 	return (1);
 }
 
@@ -45,20 +49,30 @@ int		get_base_entry(t_base *info, char *line)
 	IBE = NULL;
 	info->end = NULL;
 	info->index = 1;
-	ft_printf("IN GET BASE ENTRY\n");
+	line = NULL;
+	//dprintf(2, "IN GET BASE ENTRY\n");
 	while((ret = get_next_line(0, &line)) > 0)
 	{
+		//ft_printf(RED"|%s|"C_DEFAULT, line);
 		if (!get_command(info, line))
 			return (0);
 		if (IANT > 0 && (IBOO == 0 || IBOO == 4) && (!(get_room(info, line))))
+		{
+			free(line);
 			return (0);
+		}
 		else if (IANT == -1 && ft_isalldigit(line) &&
 			(IANT = ft_atoi(line)) && IANT <= 0)
+		{
+			free(line);
 			return (0);
+		}
 		IBOO = IBOO == 3 ? 0 : IBOO;
 		IBE = ft_append(IBE, line, 3);
+		//ft_printf("|************************************%s|\n", line);
 		IBE = ft_append(IBE, "\n", 1);
 	}
+	free(line);
 	return (1);
 }
 
@@ -71,6 +85,7 @@ void	init_struct(t_base *info)
 	info->a = 1;
 	info->papa = NULL;
 	info->last = NULL;
+	IRM = NULL;
 }
 
 void	free_list(t_base *info)
@@ -106,20 +121,31 @@ void	free_lemin(t_base *info)
 		free(ITB);
 	if (info->end)
 		free(info->end);
-	if (IMX && IPAPA)
+	if (IMX)
 	{
 		while (i < IMSZ)
 			free(IMX[i++]);
-		i = 0;
+		free(IMX);
+	}
+	i = 0;
+	if (IPAPA)
+	{
 		while (i < 2)
 			free(IPAPA[i++]);
-		free(IMX);
 		free(IPAPA);
 	}
+	if (ILT)
+		free(ILT);
 	if (ILH)
 		free_list(info);
 	free(info);
 	return ;
+}
+
+void	exiter(t_base *info)
+{
+	free_lemin(info);
+	exit(-1);
 }
 
 int		main(void)
@@ -130,60 +156,18 @@ int		main(void)
 	init_struct(info);
 	if (!(get_base_entry(info, NULL)) && ft_printf("ENTRY ERROR\n"))
 	{
-		//sleep(3);
+		free_lemin(info);
+		get_next_line(-2, NULL);
 		return (0);
 	}
 	IBOO = 0;
 	ft_printf("%s\n", IBE);
 	if (!tube_cleaner(info, 0, 0))
-	{
-		//sleep(3);
-		return (0);
-	}
+		exiter(info);
 	if (!path_finder(info, 0, 0) && ft_printf("PATH FINDER ERROR\n"))
-	{
-		//sleep(3);
-		return (0);
-	}
+		exiter(info);
 	if (!get_path(info) && ft_printf("GET PATH ERROR\n"))
-	{
-		//sleep(3);
-		return (0);
-	}
+		exiter(info);
 	free_lemin(info);
-	// ft_printf("ILT ++++++++\n");
-	// while (i < IMSZ)
-	// 	ft_printf("|%d", ILT[i++]);
-	// ft_printf("\n");
-	// ft_printf("ILT ++++++++\n");
-	// i = 0;
-	// while (i < 2)
-	// {
-	// 	j = 0;
-	// 	while (j < IMSZ)
-	// 	{
-	// 		ft_printf("|");
-	// 		ft_printf(RED"%d"C_DEFAULT, IPAPA[i][j++]);
-	// 	}
-	// 	ft_printf("\n");
-	// 	i++;
-	// }
-	// i = 0;
-	// while (i < IMSZ)
-	// {
-	// 	j = 0;
-	// 	while (j < IMSZ)
-	// 	{
-	// 		if (IMX[i][j] != 0)
-	// 		{
-	// 			ft_printf("|");
-	// 			ft_printf(RED"%d"C_DEFAULT, IMX[i][j++]);
-	// 		}
-	// 		else
-	// 			ft_printf("|%d", IMX[i][j++]);
-	// 	}
-	// 	ft_printf("\n");
-	// 	i++;
-	// }
 	return(0);
 }

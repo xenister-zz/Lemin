@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:58 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/21 08:31:59 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:21:28 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int		check_tube(t_base *info, char *tocheck)
 
 	tempo = ILH;
 	index = 0;
+	if (!tocheck)
+		return (-1);
 	ft_printf("IN CHECK TUBE -- %s\n", tocheck);
 	while (ILC->name || ILN != NULL)
 	{
@@ -54,6 +56,7 @@ int		check_tube(t_base *info, char *tocheck)
 		{
 			index = ILC->index;
 			ILH = tempo;
+			free(tocheck);
 			return (index);
 		}
 		if (ILN != NULL)
@@ -62,5 +65,6 @@ int		check_tube(t_base *info, char *tocheck)
 			break ;
 	}
 	ILH = tempo;
+	free(tocheck);
 	return(-1);
 }

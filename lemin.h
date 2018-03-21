@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/03/21 10:20:00 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/21 14:55:08 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define IANT info->fourmi
 # define IBE info->base_entry
 # define ITB info->tube
+# define IRM info->room
 # define IMX info->matrix
 # define IMSZ info->mxsize
 # define IBOO info->boo
@@ -33,6 +34,7 @@ typedef struct	s_base
 {
 	char	*base_entry;
 	char	*tube;
+	char	**room;
 	int		**matrix;
 	char	*end;
 	t_list	*list_house;
@@ -44,7 +46,6 @@ typedef struct	s_base
 	int		**papa;
 	int		*last;
 	int		sj;
-	int		si;
 }				t_base;
 
 typedef struct  s_house
@@ -74,7 +75,7 @@ int		save_neighbour(t_base *info, int room, int neighboor);
 int		get_short_tube(t_base *info);
 int     get_path(t_base *info);
 int		get_name_room(t_base *info, int index);
-int		print_path(t_base *info, char **room, int c);
+int		print_path(t_base *info, int c);
 int		move_ant(t_base *info, int c);
 void	free_list(t_base *info);
 

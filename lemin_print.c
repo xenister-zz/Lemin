@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 14:25:20 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/20 03:14:49 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/21 14:58:35 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int     get_path(t_base *info)
 {
 	int		i;
 	int		c;
-	char	**room;
 
-	room = NULL;
 	i = IMSZ - 1;
 	c = 0;
 	if (ILT[i] == -1)
@@ -38,11 +36,12 @@ int     get_path(t_base *info)
 		{
 			if (!get_name_room(info, IPAPA[0][i]))
 				return (0);
-			room  = ft_addchartable(room, info->end, c);
+			IRM = ft_addchartable(IRM, info->end, c);
 		}
 	}
 	i = -1;
-	if(!print_path(info, room, c))
+	info->a = c;
+	if(!print_path(info, c))
 		return (0);
 	return (1);
 }
@@ -69,7 +68,7 @@ int		get_name_room(t_base *info, int index)
 	return (0);
 }
 
-int		print_path(t_base *info, char **room, int c)
+int		print_path(t_base *info, int c)
 {
 	int		i;
 
@@ -86,11 +85,16 @@ int		print_path(t_base *info, char **room, int c)
 		while (i > 0)
 		{
 			if (ILT[i] != 0)
-				ft_printf("L%d-%s ", ILT[i], room[i - 1]);
+				ft_printf("L%d-%s ", ILT[i], IRM[i - 1]);
 			i--;
 		}
 		ft_printf("\n");
 	}
+	i = 0;
+	while (IRM[i])
+		free(IRM[i++]);
+	free(IRM);
+	free(ILT);
 	return (1);
 }
 
