@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/20 05:39:35 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:03:17 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 int		get_command(t_base *info, char *line)
 {
-	if (IBOO == 0 && !ft_strstr(line, "###"))
+	ft_printf("IN GET COMMAND\n");
+	if (IBOO == 0 && ft_strstr(line, "#"))
 	{
-		if(ft_strstr(line, "##start") && (IBOO = 1))
+		if((ft_strcmp(line, "##start") == 0) && (IBOO = 1))
 			return (1);
-		else if (ft_strstr(line, "##end") && (IBOO = 2))
+		else if ((ft_strcmp(line, "##end") == 0) && (IBOO = 2))
 			return (1);
-		else if (ft_strstr(line, "#") && (IBOO = 3))
+		else if ((ft_count_char(line, '#') == 1) &&
+			(line[0] == '#') && (IBOO = 3))
 			return (1);
 	}
 	else
@@ -43,6 +45,7 @@ int		get_base_entry(t_base *info, char *line)
 	IBE = NULL;
 	info->end = NULL;
 	info->index = 1;
+	ft_printf("IN GET BASE ENTRY\n");
 	while((ret = get_next_line(0, &line)) > 0)
 	{
 		if (!get_command(info, line))
@@ -53,17 +56,14 @@ int		get_base_entry(t_base *info, char *line)
 			(IANT = ft_atoi(line)) && IANT <= 0)
 			return (0);
 		IBOO = IBOO == 3 ? 0 : IBOO;
-		IBE = ft_append(IBE, line, 2);
-		IBE = ft_append(IBE, "\n", 0);
+		IBE = ft_append(IBE, line, 3);
+		IBE = ft_append(IBE, "\n", 1);
 	}
 	return (1);
 }
 
-int		main(void)
+void	init_struct(t_base *info)
 {
-	t_base	*info;
-
-	info = ft_memalloc(sizeof(t_base), 0);
 	IBOO = 0;
 	IANT = -1;
 	ITB = NULL;
@@ -71,6 +71,63 @@ int		main(void)
 	info->a = 1;
 	info->papa = NULL;
 	info->last = NULL;
+}
+
+void	free_list(t_base *info)
+{
+	t_list	*tempo;
+
+	while ((ILC && ILC->name) || ILN != NULL)
+	{
+		if (ILC && ILC->name)
+			free(ILC->name);
+		if (ILC)
+			free(ILH->content);
+		tempo = ILH;
+		if (ILN != NULL)
+		{
+			ILH = ILN;
+			free(tempo);
+		}
+		else
+			break ;
+	}
+	free(tempo);
+}
+
+void	free_lemin(t_base *info)
+{
+	int		i;
+
+	i = 0;
+	if (IBE)
+		free(IBE);
+	if (ITB)
+		free(ITB);
+	if (info->end)
+		free(info->end);
+	if (IMX && IPAPA)
+	{
+		while (i < IMSZ)
+			free(IMX[i++]);
+		i = 0;
+		while (i < 2)
+			free(IPAPA[i++]);
+		free(IMX);
+		free(IPAPA);
+	}
+	if (ILH)
+		free_list(info);
+	free(info);
+	return ;
+}
+
+int		main(void)
+{
+	t_base	*info;
+
+	info = ft_memalloc(sizeof(t_base), 0);
+	init_struct(info);
 	if (!(get_base_entry(info, NULL)) && ft_printf("ENTRY ERROR\n"))
 	{
 		//sleep(3);
@@ -93,6 +150,7 @@ int		main(void)
 		//sleep(3);
 		return (0);
 	}
+	free_lemin(info);
 	// ft_printf("ILT ++++++++\n");
 	// while (i < IMSZ)
 	// 	ft_printf("|%d", ILT[i++]);

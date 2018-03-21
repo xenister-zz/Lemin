@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:58 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/20 03:15:07 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/21 08:31:59 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		get_tube(t_base *info, char	*line)
 	int		i;
 	int		j;
 
+	ft_printf("IN GET TUBE\n");
 	if (info->end && !get_end_room(info))
 		return (0);
 	if ((i = check_tube(info, ft_str_nword(line, 0, '-'))) == -1)
@@ -46,6 +47,7 @@ int		check_tube(t_base *info, char *tocheck)
 
 	tempo = ILH;
 	index = 0;
+	ft_printf("IN CHECK TUBE -- %s\n", tocheck);
 	while (ILC->name || ILN != NULL)
 	{
 		if (ft_strstr(ILC->name, tocheck))

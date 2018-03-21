@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/03/20 05:34:37 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/21 10:20:00 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct  s_house
 }				t_house;
 
 int		main(void);
+void	init_struct(t_base *info);
 int		get_base_entry(t_base *info, char *line);
 int		get_room(t_base *info, char *line);
 int		get_tube(t_base *info, char	*line);
@@ -75,5 +76,6 @@ int     get_path(t_base *info);
 int		get_name_room(t_base *info, int index);
 int		print_path(t_base *info, char **room, int c);
 int		move_ant(t_base *info, int c);
+void	free_list(t_base *info);
 
 #endif
