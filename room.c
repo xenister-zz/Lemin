@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:19:46 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/21 14:03:39 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/22 17:04:45 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,16 @@ int		check_room(t_base *info, char *line)
 	i = 0;
 	ft_printf("IN CHECK ROOM\n");
 	if (!check_coord(info, line))
+	{
+		free(line);
 		return (0);
+	}
 	if (!(tmp = ft_str_nword(line, 0, ' ')))
 		return (0);
 	if (tmp[0] == 'L' || tmp[0] == '#')
 	{
-		//free(tmp);
+		free(tmp);
+		free(line);
 		return (0);
 	}
 	else if (IBOO == 1)
@@ -87,13 +91,25 @@ int		check_room(t_base *info, char *line)
 int		get_room(t_base *info, char *line)
 {
 	ft_printf("--- IN GET ROOM ---\n");
-	if (IBOO == 4)
+
+	if (line[0] == '\0')
 	{
-		IBOO = 0;
-		return(1);
+		ft_printf(RED"JAJAJAJAJAJAJAJA"C_DEFAULT);
+		free(line);
+		return (0);
 	}
+	if (IBOO == 4 && (!(IBOO = 0)))
+		return(1);
 	if (ft_strchr(line, '-'))
-		return (get_tube(info, line));
+	{
+		if (!get_tube(info, line))
+		{
+			free(line);
+			return (0);
+		}
+		else
+			return (1);
+	}
 	if (line[0] == ' ' || ft_count_char(line, ' ') != 2)
 	{
 		free(line);

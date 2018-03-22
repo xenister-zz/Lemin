@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 14:25:20 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/21 14:58:35 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/22 16:42:36 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int		print_path(t_base *info, int c)
 		free(IRM[i++]);
 	free(IRM);
 	free(ILT);
+	info->a = 1;
 	return (1);
 }
 

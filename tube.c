@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:58 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/21 20:21:28 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/22 17:04:39 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int		get_tube(t_base *info, char	*line)
 	int		j;
 
 	ft_printf("IN GET TUBE\n");
+	if (ft_strchr(line, ' '))
+		return (0);
 	if (info->end && !get_end_room(info))
 		return (0);
 	if ((i = check_tube(info, ft_str_nword(line, 0, '-'))) == -1)
@@ -37,6 +39,7 @@ int		get_tube(t_base *info, char	*line)
 		create_matrix(info);
 	if (IMX && !(set_matrix(info, i, j)))
 		return (0);
+	info->nbr_of_tube++;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:21:45 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/21 15:05:45 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/22 09:21:56 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ int		path_finder(t_base *info, int i, int j)
 	info->a = 0;
 	while (i < IMSZ)
 	{
-		ISJ = 0;
 		if (i == 0 || !save_room(info, i))
 		{
 			info->a++;
