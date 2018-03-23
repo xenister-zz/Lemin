@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/22 17:04:29 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/23 17:18:51 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		get_command(t_base *info, char *line)
 	ft_printf("IN GET COMMAND\n");
 	if (IBOO == 0 && ft_strstr(line, "#"))
 	{
+		ft_printf("IN # COMMAND\n");
 		if((ft_strcmp(line, "##start") == 0) && (IBOO = 1))
 			return (1);
 		else if ((ft_strcmp(line, "##end") == 0) && (IBOO = 2))
@@ -24,15 +25,18 @@ int		get_command(t_base *info, char *line)
 		else if ((ft_count_char(line, '#') == 1) &&
 			(line[0] == '#') && (IBOO = 3))
 			return (1);
+		else
+		{
+			free(line);
+			return (0);
+		}
 	}
 	else
 	{
 		if (IBOO == 1)
 			if (!(check_room(info, line)))
-			{
 				return (0);
-			}
-		if (IBOO == 2)
+		if (IBOO == 2 && (info->end_up = 1))
 			info->end = ft_strdup(line, 0);
 		IBOO = IBOO > 0 ? 4 : 0;
 	}
@@ -48,16 +52,21 @@ int		get_base_entry(t_base *info, char *line)
 	IBE = NULL;
 	info->end = NULL;
 	info->index = 1;
-	line = NULL;
 	while((ret = get_next_line(0, &line)) > 0)
 	{
-		ft_printf(RED"|%s|\n"C_DEFAULT, line);;
+		if (line[0] == '\0')
+		{
+			free(line);
+			return (0);
+		}
+		ft_printf(RED"|%s|-|%d|\n"C_DEFAULT, line, IBOO);
 		if (!get_command(info, line))
 			return (0);
+		ft_printf(RED"|||||  %d  ||||||\n"C_DEFAULT, IBOO);
 		if (IANT > 0 && (IBOO == 0 || IBOO == 4) && (!(get_room(info, line))))
 			return (0);
-		else if (IANT == -1 && ft_isalldigit(line) &&
-			(IANT = ft_atoi(line)) && IANT <= 0)
+		else if ((IANT == -1 && ft_isalldigit(line) && (IANT = ft_atoi(line))
+			&& IANT <= 0) || ((IANT == - 1) && !ft_isalldigit(line)))
 		{
 			free(line);
 			return (0);
@@ -81,6 +90,7 @@ void	init_struct(t_base *info)
 	info->last = NULL;
 	IRM = NULL;
 	info->nbr_of_tube = 0;
+	info->end_up = 0;
 }
 
 void	free_list(t_base *info)
@@ -113,7 +123,7 @@ void	free_lemin(t_base *info, int i)
 		free(ITB);
 	if (ILT && info->a == 0)
 		free(ILT);
-	if (info->end && info->a == 0)
+	if (info->end_up == 1)
 		free(info->end);
 	if (IMX)
 	{

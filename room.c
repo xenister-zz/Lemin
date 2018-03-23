@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:19:46 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/22 17:04:45 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/23 17:07:26 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int		check_coord(t_base *info, char *line)
 	char	*tmp;
 
 	i = 0;
+	if (info->nbr_of_tube > 0)
+		return (0);
 	while (++i != 3)
 	{
 		if (!(tmp = ft_str_nword(line, i, ' ')))
@@ -69,7 +71,8 @@ int		check_room(t_base *info, char *line)
 	ft_printf("IN CHECK ROOM\n");
 	if (!check_coord(info, line))
 	{
-		free(line);
+		if (IBOO != 2)
+			free(line);
 		return (0);
 	}
 	if (!(tmp = ft_str_nword(line, 0, ' ')))
@@ -77,7 +80,8 @@ int		check_room(t_base *info, char *line)
 	if (tmp[0] == 'L' || tmp[0] == '#')
 	{
 		free(tmp);
-		free(line);
+		if (IBOO != 2)
+			free(line);
 		return (0);
 	}
 	else if (IBOO == 1)
@@ -117,5 +121,6 @@ int		get_room(t_base *info, char *line)
 	}
 	else
 		return (check_room(info, line));
+	ft_printf("--- END GET ROOM ---\n");
 	return (1);
 }

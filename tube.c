@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:58 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/22 17:04:39 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/23 17:18:21 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		get_end_room(t_base *info)
 {
+	info->end_up = 0;
 	if (info->end && !(check_room(info, info->end)))
 		return (0);
 	else

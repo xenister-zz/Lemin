@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/03/22 14:18:07 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/23 17:14:48 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_base
 	int		boo;
 	int		index;
 	int		a;
+	int		end_up;
 	int		**papa;
 	int		*last;
 	int		nbr_of_tube;
