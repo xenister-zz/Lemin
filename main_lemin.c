@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/23 17:18:51 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/25 20:29:35 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int		get_command(t_base *info, char *line)
 	if (IBOO == 0 && ft_strstr(line, "#"))
 	{
 		ft_printf("IN # COMMAND\n");
-		if((ft_strcmp(line, "##start") == 0) && (IBOO = 1))
+		if((ft_strcmp(line, "##start") == 0) && (IBOO = 1) && (info->a += 1))
 			return (1);
-		else if ((ft_strcmp(line, "##end") == 0) && (IBOO = 2))
+		else if ((ft_strcmp(line, "##end") == 0) && (IBOO = 2) && (info->a += 1))
 			return (1);
 		else if ((ft_count_char(line, '#') == 1) &&
 			(line[0] == '#') && (IBOO = 3))
@@ -40,7 +40,7 @@ int		get_command(t_base *info, char *line)
 			info->end = ft_strdup(line, 0);
 		IBOO = IBOO > 0 ? 4 : 0;
 	}
-	ft_printf("EXIT GET COMMAND\n");
+	ft_printf("EXIT GET COMMAND a = |%d|\n", info->a);
 	return (1);
 }
 

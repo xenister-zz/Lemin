@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:20:58 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/23 17:18:21 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/25 18:27:59 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		get_tube(t_base *info, char	*line)
 	if (ft_strchr(line, ' '))
 		return (0);
 	if (info->end && !get_end_room(info))
+		return (0);
+	if (info->a != 2)
 		return (0);
 	if ((i = check_tube(info, ft_str_nword(line, 0, '-'))) == -1)
 		return (0);
