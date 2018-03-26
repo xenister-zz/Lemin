@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 14:25:20 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/22 16:42:36 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/26 14:46:19 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		print_path(t_base *info, int c)
 	free(ILT);
 	ILT = ft_memalloc(sizeof(int) * c, 0);
 	ILT[0] = IANT;
+	ft_printf("%s\n", IBE);
 	while (IANT != ILT[c - 1])
 	{
 		move_ant(info, c);

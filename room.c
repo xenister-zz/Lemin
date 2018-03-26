@@ -6,18 +6,22 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:19:46 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/23 17:07:26 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/26 14:47:17 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		list_room(t_base *info, int index, char *name)
+int		list_room(t_base *info, int index, char *name, char *line)
 {
 	t_house		*thouse;
-	t_list		*tempo;
  
-	ft_printf("IN LIST ROOM\n");
+	if (info->nbr_of_room > 1 && (!check_room_doublon(info, name)))
+	{
+		free(line);
+		free(name);
+		return (0);
+	}
 	if (!(thouse = ft_memalloc(sizeof(*thouse), 0)))
 		return (0);
 	thouse->index = index;
@@ -28,16 +32,26 @@ int		list_room(t_base *info, int index, char *name)
 		thouse->ant = 0;
 	ft_lstadd(&info->list_house, ft_lstnew(thouse, sizeof(*thouse)));
 	free(thouse);
+	info->nbr_of_room++;
+	return (1);
+}
+
+int		check_room_doublon(t_base *info, char *name)
+{
+	t_list		*tempo;
+
 	tempo = ILH;
 	while (ILC->name || ILN != NULL)
 	{
+		if (ft_strcmp(ILC->name, name) == 0 && (ILH = tempo))
+			return (0);
 		if (ILN != NULL)
 			ILH = ILN;
 		else
 			break ;
 	}
 	ILH = tempo;
-	return (1);
+	return (1); 
 }
 
 int		check_coord(t_base *info, char *line)
@@ -65,10 +79,7 @@ int		check_coord(t_base *info, char *line)
 int		check_room(t_base *info, char *line)
 {
 	char	*tmp;
-	int		i;
-	
-	i = 0;
-	ft_printf("IN CHECK ROOM\n");
+
 	if (!check_coord(info, line))
 	{
 		if (IBOO != 2)
@@ -84,21 +95,18 @@ int		check_room(t_base *info, char *line)
 			free(line);
 		return (0);
 	}
-	else if (IBOO == 1)
-		return (list_room(info, 0, tmp));
-	else if (!(list_room(info, info->index, tmp)))
-			return (0);
+	else if (IBOO == 1 && (!list_room(info, 0, tmp, line)))
+		return (0);
+	else if (IBOO != 1 && !(list_room(info, info->index, tmp, line)))
+		return (0);
 	info->index++;
 	return(1);
 }
 
 int		get_room(t_base *info, char *line)
 {
-	ft_printf("--- IN GET ROOM ---\n");
-
 	if (line[0] == '\0')
 	{
-		ft_printf(RED"JAJAJAJAJAJAJAJA"C_DEFAULT);
 		free(line);
 		return (0);
 	}
@@ -111,16 +119,14 @@ int		get_room(t_base *info, char *line)
 			free(line);
 			return (0);
 		}
-		else
-			return (1);
+		return (1);
 	}
 	if (line[0] == ' ' || ft_count_char(line, ' ') != 2)
 	{
 		free(line);
 		return (0);
 	}
-	else
-		return (check_room(info, line));
-	ft_printf("--- END GET ROOM ---\n");
+	else if (!check_room(info, line))
+		return (0);
 	return (1);
 }

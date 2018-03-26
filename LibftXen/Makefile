@@ -6,11 +6,11 @@
 #    By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/09 17:53:05 by susivagn          #+#    #+#              #
-#    Updated: 2018/03/19 18:54:03 by susivagn         ###   ########.fr        #
+#    Updated: 2018/03/26 20:26:18 by susivagn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libft.a
 
 SRC = ft_bzero.c \
 	  ft_memset.c \

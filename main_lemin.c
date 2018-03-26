@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/25 20:29:35 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/26 19:19:54 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,28 @@
 
 int		get_command(t_base *info, char *line)
 {
-	ft_printf("IN GET COMMAND\n");
-	if (IBOO == 0 && ft_strstr(line, "#"))
+	if (IBOO == 0 && line[0] == '#')
 	{
-		ft_printf("IN # COMMAND\n");
 		if((ft_strcmp(line, "##start") == 0) && (IBOO = 1) && (info->a += 1))
 			return (1);
 		else if ((ft_strcmp(line, "##end") == 0) && (IBOO = 2) && (info->a += 1))
 			return (1);
-		else if ((ft_count_char(line, '#') == 1) &&
-			(line[0] == '#') && (IBOO = 3))
+		else if ((IBOO = 3))
 			return (1);
 		else
-		{
 			free(line);
-			return (0);
-		}
+		return (0);
 	}
 	else
 	{
-		if (IBOO == 1)
-			if (!(check_room(info, line)))
+		if ((ft_count_char(line, '#') == 1) && (line[0] == '#'))
+			return (1);
+		if (IBOO == 1 && (!check_room(info, line)))
 				return (0);
 		if (IBOO == 2 && (info->end_up = 1))
 			info->end = ft_strdup(line, 0);
 		IBOO = IBOO > 0 ? 4 : 0;
 	}
-	ft_printf("EXIT GET COMMAND a = |%d|\n", info->a);
 	return (1);
 }
 
@@ -59,14 +54,11 @@ int		get_base_entry(t_base *info, char *line)
 			free(line);
 			return (0);
 		}
-		ft_printf(RED"|%s|-|%d|\n"C_DEFAULT, line, IBOO);
 		if (!get_command(info, line))
 			return (0);
-		ft_printf(RED"|||||  %d  ||||||\n"C_DEFAULT, IBOO);
 		if (IANT > 0 && (IBOO == 0 || IBOO == 4) && (!(get_room(info, line))))
 			return (0);
-		else if ((IANT == -1 && ft_isalldigit(line) && (IANT = ft_atoi(line))
-			&& IANT <= 0) || ((IANT == - 1) && !ft_isalldigit(line)))
+		else if ((IANT == -1) && ((IANT = ft_atoi(line)) <= 0))
 		{
 			free(line);
 			return (0);
@@ -90,6 +82,7 @@ void	init_struct(t_base *info)
 	info->last = NULL;
 	IRM = NULL;
 	info->nbr_of_tube = 0;
+	info->nbr_of_room = 0;
 	info->end_up = 0;
 }
 
@@ -156,6 +149,7 @@ int		main(void)
 
 	info = ft_memalloc(sizeof(t_base), 0);
 	init_struct(info);
+	ft_printf(RED"||||||||||||||| LEM-IN START  |||||||||||||||\n"C_DEFAULT);
 	if (!(get_base_entry(info, NULL)) && info->nbr_of_tube < 1 &&
 		ft_printf("ENTRY ERROR\n"))
 	{
@@ -163,9 +157,8 @@ int		main(void)
 		get_next_line(-2, NULL);
 		return (0);
 	}
-	ft_printf(BLUE"|%d|\n"C_DEFAULT, info->nbr_of_tube);
+	ft_printf(RED"||||||||||||||| GET ENTRY END |||||||||||||||\n"C_DEFAULT);
 	IBOO = 0;
-	ft_printf("%s\n", IBE);
 	info->a = 1;
 	if (!tube_cleaner(info, 0, 0))
 		exiter(info);

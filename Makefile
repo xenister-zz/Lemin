@@ -6,47 +6,36 @@
 #    By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/22 19:23:54 by susivagn          #+#    #+#              #
-#    Updated: 2018/02/22 19:26:54 by susivagn         ###   ########.fr        #
+#    Updated: 2018/03/26 20:39:19 by susivagn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/08/09 17:53:05 by susivagn          #+#    #+#              #
-#    Updated: 2018/02/15 13:45:47 by susivagn         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+SRC_PATH = src
+
+OBJ_PATH = obj
+
+LDFLAGS = -LLibftXen
+
+LDLIBS = -llibft.a
+
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = lem-in
 
-SRC = main_lemin.c \
-	  room.c \
-	  tube.c \
-	  matrix.c
+SRC_NAME =
 
-OFILE = $(SRC:.c=.o)
+OBJ_NAME = $(SRC_NAME:.c=.o)
 
-FLAGS= -Wall -Wextra -Werror
+SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
 all: $(NAME)
 
-$(NAME): $(OFILE)
-	@gcc -Wall -Werror -Wextra  -g -c $(SRC)
-	@echo "*** Lem-in Ready ***"
+$(NAME): $(OBJ)
+	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
 
-
-%.o: %.c
-	@gcc $(FLAGS) -c -g $^
-
-clean:
-	@rm -f $(OFILE)
-
-fclean: clean
-	@rm -f $(NAME)
-
-re: fclean all
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@mkdir $(OBJ_PATH) 2>/dev/null
+	$(CC) $(CFLAGS) $
