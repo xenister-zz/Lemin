@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 15:22:17 by susivagn          #+#    #+#             */
-/*   Updated: 2017/09/29 11:49:15 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/26 21:06:15 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-# include "./libft.h"
+# include "libft.h"
 
 /*
 **  SET ALL DEFAULT
