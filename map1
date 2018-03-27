@@ -1,4 +1,4 @@
-10
+3
 #r ooms
 patate 5 6
 ##start
@@ -18,23 +18,18 @@ C9 10 102
 C2 11 11
 C3 12 12
 C4 13 13
-start-A1
+start-B5
 A0-A1
-A1-patat
-A0-A1
-A0-A1
-
-A0-A1
-A0-A1
-A0-A1
+A1-C9
+A0-patat
 A0-C9
-patat-A1
+patat-B0
 C9-C2
 C2-C3
 C3-C4
 B5-B1
 B1-B2
 B2-B3
-B3-B2
+B3-patat
 B4-B5
-C9-pat
+C9-patat
