@@ -6,7 +6,7 @@
 #    By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/22 19:23:54 by susivagn          #+#    #+#              #
-#    Updated: 2018/03/26 23:22:47 by susivagn         ###   ########.fr        #
+#    Updated: 2018/03/28 16:07:49 by susivagn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC_NAME = main_lemin.c \
 		   room.c \
 		   tube.c \
 		   matrix.c \
-		   lemin_print.c
+		   lemin_print.c \
+		   init_matrix_free.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

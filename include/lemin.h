@@ -6,14 +6,14 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/03/27 04:58:03 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/28 16:23:21 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEMIN_H
 # define LEMIN_H
 
-# include "libft.h"
+# include "../LibftXen/libft.h"
 
 # define IANT info->fourmi
 # define IBE info->base_entry
@@ -50,37 +50,38 @@ typedef struct	s_base
 	int		nbr_of_room;
 }				t_base;
 
-typedef struct  s_house
+typedef struct	s_house
 {
 	int		index;
 	char	*name;
 	int		ant;
 }				t_house;
 
-int		main(void);
-void	init_struct(t_base *info);
-int		get_base_entry(t_base *info, char *line);
-int		get_room(t_base *info, char *line);
-int		get_tube(t_base *info, char	*line);
-int		check_room(t_base *info, char *line);
-int		check_tube(t_base *info, char *line);
-int		list_room(t_base *info, int index, char *name, char *line);
-int		set_matrix(t_base *info, int a, int b);
-int		create_matrix(t_base *info);
-int		path_finder(t_base *info, int i, int j);
-int		check_path(t_base *info, int i, int j);
-int		get_tube_matrice(t_base *info, int	tube, int  *a, int *b);
-int		path_finder(t_base *info, int	i, int j);
-int		path_finder_sup(t_base *info, int i, int j);
-int		tube_cleaner(t_base *info, int	i, int j);
-int		save_neighbour(t_base *info, int room, int neighboor);
-int		get_short_tube(t_base *info);
-int     get_path(t_base *info);
-int		get_name_room(t_base *info, int index);
-int		print_path(t_base *info, int c);
-int		move_ant(t_base *info, int c, int bit);
-void	free_lemin(t_base *info, int i);
-void	free_list(t_base *info);
-int		check_room_doublon(t_base *info, char *name);
+int				main(void);
+void			init_struct(t_base *info);
+int				get_base_entry(t_base *info, char *line);
+int				get_room(t_base *info, char *line);
+int				get_tube(t_base *info, char	*line);
+int				check_room(t_base *info, char *line);
+int				check_tube(t_base *info, char *line);
+int				list_room(t_base *info, int index, char *name, char *line);
+int				set_matrix(t_base *info, int a, int b);
+int				create_matrix(t_base *info);
+int				path_finder(t_base *info, int i, int j);
+int				check_path(t_base *info, int i, int j);
+int				get_tube_matrice(t_base *info, int	tube, int *a, int *b);
+int				path_finder(t_base *info, int	i, int j);
+int				path_finder_sup(t_base *info, int i, int j);
+int				tube_cleaner(t_base *info, int	i, int j);
+int				save_neighbour(t_base *info, int room, int neighboor);
+int				get_short_tube(t_base *info);
+int				get_path(t_base *info);
+int				get_name_room(t_base *info, int index);
+int				print_path(t_base *info, int c, int i);
+int				move_ant(t_base *info, int c, int bit, int i);
+void			free_lemin(t_base *info, int i);
+void			free_list(t_base *info);
+int				check_room_doublon(t_base *info, char *name);
+int				get_path_sup(t_base *info, int i, int c);
 
 #endif

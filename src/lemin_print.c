@@ -6,13 +6,13 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 14:25:20 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/27 04:59:26 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/28 15:39:25 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#include "../include/lemin.h"
 
-int     get_path(t_base *info)
+int		get_path(t_base *info)
 {
 	int		i;
 	int		c;
@@ -30,6 +30,17 @@ int     get_path(t_base *info)
 		i = ILT[i];
 	}
 	i = IMSZ;
+	if (!(get_path_sup(info, i, c)))
+		return (0);
+	i = -1;
+	info->a = c;
+	if (!print_path(info, (c + 1), 0))
+		return (0);
+	return (1);
+}
+
+int		get_path_sup(t_base *info, int i, int c)
+{
 	while (--i >= 0)
 	{
 		if (IPAPA[0][i] != -1)
@@ -39,10 +50,6 @@ int     get_path(t_base *info)
 			IRM = ft_addchartable(IRM, info->end, c);
 		}
 	}
-	i = -1;
-	info->a = c;
-	if(!print_path(info, c))
-		return (0);
 	return (1);
 }
 
@@ -68,22 +75,17 @@ int		get_name_room(t_base *info, int index)
 	return (0);
 }
 
-int		print_path(t_base *info, int c)
+int		print_path(t_base *info, int c, int i)
 {
-	int		i;
-
-	c = c + 1;
 	IBOO = 0;
 	IPAPA[0][0] = IANT;
 	free(ILT);
 	ILT = ft_memalloc(sizeof(int) * c, 0);
 	ILT[0] = IANT;
 	ft_printf("%s\n", IBE);
-	ft_print_int_tab(&ILT, 1, IMSZ, "");
 	while (IANT != ILT[c - 1])
 	{
-		move_ant(info, c, 0);
-		ft_printf("|c = %d|\n", c);
+		move_ant(info, c, 0, 1);
 		i = c - 1;
 		while (i > 0)
 		{
@@ -102,12 +104,8 @@ int		print_path(t_base *info, int c)
 	return (1);
 }
 
-int		move_ant(t_base *info, int c, int bit)
+int		move_ant(t_base *info, int c, int bit, int i)
 {
-	int		i;
-
-	i = 1;
-	ft_print_int_tab(&ILT, 1, IMSZ, "");
 	while (i < c && ILT[0] > 0)
 	{
 		if (i == 1 && ILT[i] == 1 && ILT[i - 1] == 1)
@@ -122,17 +120,14 @@ int		move_ant(t_base *info, int c, int bit)
 		i++;
 	}
 	i = c - 1;
-	ft_print_int_tab(&ILT, 1, IMSZ, "");
 	while (bit == 0 && ILT[0] == 0 && i > 0)
 	{
 		ILT[i] = ILT[i - 1];
 		i--;
 	}
-	ft_print_int_tab(&ILT, 1, IMSZ, "");
 	if (ILT[0] == 1)
 		ILT[1]++;
 	if (ILT[0] != 0)
 		ILT[0]--;
-	ft_print_int_tab(&ILT, 1, IMSZ, "");
 	return (1);
 }

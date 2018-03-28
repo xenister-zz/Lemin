@@ -13,13 +13,17 @@ B1 5 5
 B2 6 6
 B3 7 7
 B4 8 8
+##pute
 B5 9 9
 C9 10 102
 C2 11 11
 C3 12 12
 C4 13 13
 start-B5
+start-start
+patat-patat
 A0-A1
+A0-A0
 A1-C9
 A0-patat
 A0-C9

@@ -6,16 +6,16 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:19:46 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/26 14:47:17 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/28 15:45:08 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#include "../include/lemin.h"
 
 int		list_room(t_base *info, int index, char *name, char *line)
 {
 	t_house		*thouse;
- 
+
 	if (info->nbr_of_room > 1 && (!check_room_doublon(info, name)))
 	{
 		free(line);
@@ -51,7 +51,7 @@ int		check_room_doublon(t_base *info, char *name)
 			break ;
 	}
 	ILH = tempo;
-	return (1); 
+	return (1);
 }
 
 int		check_coord(t_base *info, char *line)
@@ -100,7 +100,7 @@ int		check_room(t_base *info, char *line)
 	else if (IBOO != 1 && !(list_room(info, info->index, tmp, line)))
 		return (0);
 	info->index++;
-	return(1);
+	return (1);
 }
 
 int		get_room(t_base *info, char *line)
@@ -111,7 +111,7 @@ int		get_room(t_base *info, char *line)
 		return (0);
 	}
 	if (IBOO == 4 && (!(IBOO = 0)))
-		return(1);
+		return (1);
 	if (ft_strchr(line, '-'))
 	{
 		if (!get_tube(info, line))

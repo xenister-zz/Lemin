@@ -6,65 +6,16 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:21:45 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/22 09:21:56 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/28 16:19:11 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#include "../include/lemin.h"
 
-int		create_matrix(t_base *info)
-{
-	int		size;
-
-	size = 0;
-	IMSZ = info->index;
-	if ((!IMX))
-		if (!(IMX = ft_inttable(IMX, IMSZ, IMSZ)))
-			return (0);
-	if (!IPAPA)
-		if (!(IPAPA = ft_inttable(IPAPA, IMSZ, 2)))
-			return (0);
-	IPAPA[0][0] = 0;
-	while (size++ < (IMSZ - 1))
-		IPAPA[0][size] = -1;
-	if (!ILT)
-	{
-		if (!(ILT = ft_memalloc(IMSZ * (sizeof(int)), -1)))
-			return (0);
-		ILT[0] = 0;
-	}
-	return (1);
-}
-
-int		set_matrix(t_base *info, int a, int b)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (i < IMSZ)
-	{
-		j = 0;
-		while (j < IMSZ)
-		{
-			if (i == a && j == b)
-			{
-				IMX[i][j] = 1;
-				IMX[j][i] = 1;
-				return (1);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int		tube_cleaner(t_base *info, int	i, int j)
+int		tube_cleaner(t_base *info, int i, int j)
 {
 	int		c;
-	
+
 	info->a = 0;
 	while (++i < (IMSZ - 1))
 	{
