@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:06:05 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/28 15:51:22 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:17:26 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,22 @@ int		get_command(t_base *info, char *line)
 	return (1);
 }
 
-int		get_base_entry(t_base *info, char *line)
+int		antcheck(char *line)
 {
-	int		ret;
+	int		i;
 
-	ret = 0;
+	i = 0;
+	if (!line)
+		return (0);
+	if (line[0] == '-' || line[0] == '+')
+		i++;
+	if (!ft_isalldigit(&line[i]))
+		return (0);
+	return (1);
+}
+
+int		get_base_entry(t_base *info, char *line, int ret)
+{
 	while ((ret = get_next_line(0, &line)) > 0)
 	{
 		if (line[0] == '\0')
@@ -56,7 +67,8 @@ int		get_base_entry(t_base *info, char *line)
 			return (0);
 		if (IANT > 0 && (IBOO == 0 || IBOO == 4) && (!(get_room(info, line))))
 			return (0);
-		else if ((IANT == -1) && ((IANT = ft_atoi(line)) <= 0))
+		else if (((IANT == -1) && !antcheck(line)) || ((IANT == -1) &&
+			((IANT = ft_atoi(line)) <= 0)))
 		{
 			free(line);
 			return (0);
@@ -81,8 +93,8 @@ int		main(void)
 
 	info = ft_memalloc(sizeof(t_base), 0);
 	init_struct(info);
-	if (!(get_base_entry(info, NULL)) && info->nbr_of_tube < 1 &&
-		ft_printf("ENTRY ERROR\n"))
+	if (!(get_base_entry(info, NULL, 0)) && info->nbr_of_tube < 1 &&
+		ft_printf("ERROR\n"))
 	{
 		free_lemin(info, 0);
 		get_next_line(-2, NULL);
@@ -92,10 +104,10 @@ int		main(void)
 	info->a = 1;
 	if (!tube_cleaner(info, 0, 0))
 		exiter(info);
-	if (!path_finder(info, 0, 0) && ft_printf("PATH FINDER ERROR\n"))
+	if (!path_finder(info, 0, 0) && ft_printf("ERROR\n"))
 		exiter(info);
 	info->a = 0;
-	if (!get_path(info) && ft_printf("GET PATH ERROR\n"))
+	if (!get_path(info) && ft_printf("ERROR\n"))
 		exiter(info);
 	free_lemin(info, 0);
 	return (0);

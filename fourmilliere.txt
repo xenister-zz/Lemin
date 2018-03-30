@@ -1,0 +1,26 @@
+21
+##tamer
+##start
+START 5 3
+#fdp
+##waka
+##end
+END 10 10
+A 6 84
+B 1 2
+C 4 5
+##olalala
+D 7 8
+E 5 3
+F 8 9
+START-A
+A-B
+B-C
+C-END
+START-D
+D-E
+D-B
+C-F
+F-END
+#rere
+##tamerlachevre

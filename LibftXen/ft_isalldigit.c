@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 16:47:55 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/20 05:13:37 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/30 16:47:13 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		ft_isalldigit_space(char *src)
 	{
 		if ((src[i] >= '0' && src[i] <= '9') || src[i] == ' ')
 			i++;
-		else 
+		else
 			return (0);
 	}
 	return (1);

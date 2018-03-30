@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:19:46 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/28 15:45:08 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/30 17:52:37 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int		list_room(t_base *info, int index, char *name, char *line)
 {
 	t_house		*thouse;
 
-	if (info->nbr_of_room > 1 && (!check_room_doublon(info, name)))
+	if ((index == 0 && info->bool_start == 1) ||
+		(info->nbr_of_room > 1 && (!check_room_doublon(info, name))))
 	{
 		free(line);
 		free(name);
@@ -33,6 +34,8 @@ int		list_room(t_base *info, int index, char *name, char *line)
 	ft_lstadd(&info->list_house, ft_lstnew(thouse, sizeof(*thouse)));
 	free(thouse);
 	info->nbr_of_room++;
+	if (index == 0 && info->bool_start == 0)
+		info->bool_start = 1;
 	return (1);
 }
 

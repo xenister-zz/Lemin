@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:49:11 by labelec           #+#    #+#             */
-/*   Updated: 2018/03/28 16:23:21 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:17:25 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_base
 	char	**room;
 	int		**matrix;
 	char	*end;
+	int		bool_start;
 	t_list	*list_house;
 	int		mxsize;
 	int		fourmi;
@@ -59,7 +60,7 @@ typedef struct	s_house
 
 int				main(void);
 void			init_struct(t_base *info);
-int				get_base_entry(t_base *info, char *line);
+int				get_base_entry(t_base *info, char *line, int ret);
 int				get_room(t_base *info, char *line);
 int				get_tube(t_base *info, char	*line);
 int				check_room(t_base *info, char *line);
@@ -83,5 +84,6 @@ void			free_lemin(t_base *info, int i);
 void			free_list(t_base *info);
 int				check_room_doublon(t_base *info, char *name);
 int				get_path_sup(t_base *info, int i, int c);
+int				antcheck(char *line);
 
 #endif

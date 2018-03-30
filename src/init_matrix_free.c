@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 15:50:58 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/28 16:07:00 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/30 17:27:52 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_struct(t_base *info)
 	info->a = 0;
 	info->papa = NULL;
 	info->last = NULL;
+	info->bool_start = 0;
 	info->nbr_of_tube = 0;
 	info->nbr_of_room = 0;
 	info->end_up = 0;

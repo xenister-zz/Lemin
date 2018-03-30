@@ -6,7 +6,7 @@
 /*   By: susivagn <susivagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 16:23:56 by susivagn          #+#    #+#             */
-/*   Updated: 2018/03/22 08:54:09 by susivagn         ###   ########.fr       */
+/*   Updated: 2018/03/30 16:45:04 by susivagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ char	*ft_append(char *source, char *toadd, int b)
 	if (!source && !toadd)
 		return (str);
 	if (!source && toadd && (b == 2 || b == 3))
-		return(ft_strdup(toadd, 1));
+		return (ft_strdup(toadd, 1));
 	else if (!source && toadd && b == 0)
-		return(ft_strdup(toadd, 0));
+		return (ft_strdup(toadd, 0));
 	c = (ft_strlen(source) + ft_strlen(toadd));
 	str = ft_strnew(c, '\0');
 	if (!str)
@@ -35,9 +35,8 @@ char	*ft_append(char *source, char *toadd, int b)
 	if (b == 2)
 		free(toadd);
 	if (b == 3)
-	{
 		free(source);
+	if (b == 3)
 		free(toadd);
-	}
 	return (str);
 }
